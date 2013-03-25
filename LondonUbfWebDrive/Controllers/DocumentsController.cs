@@ -1,17 +1,22 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Web.Helpers;
 using System.Web.Http;
 using LondonUbfWebDrive.Domain;
 using LondonUbfWebDrive.Repositories;
 
 namespace LondonUbfWebDrive.Controllers
 {
-    public class DocumentController : ApiController
+    public class DocumentsController : ApiController
     {
-//        // GET api/document
-//        public IEnumerable<string> Get()
-//        {
-//            return new string[] { "value1", "value2" };
-//        }
+        // GET api/document
+        public IEnumerable<Document> Get()
+        {
+            var repository = new DocumentRepository();
+            var documents = repository.Read(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments));
+
+            return documents;
+        }
 
         // GET api/document/5
         public IEnumerable<Document> Get(string id)
