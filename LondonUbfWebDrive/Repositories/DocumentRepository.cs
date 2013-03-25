@@ -1,8 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using LondonUbfWebDrive.Domain;
 
-namespace LondonUbfWebDrive.Domain
+namespace LondonUbfWebDrive.Repositories
 {
     public class DocumentRepository : IDocumentRepository
     {
