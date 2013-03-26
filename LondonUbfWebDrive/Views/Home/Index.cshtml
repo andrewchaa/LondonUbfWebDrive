@@ -15,7 +15,7 @@
 <tbody data-bind="foreach: documents">
     <tr>
         <td><input type="checkbox"> <a href="#"><i class="icon-star-empty"></i></a></td>
-        <td><a data-bind="text: name"></a></td>
+        <td><a data-bind="text: Name"></a></td>
         <td><span class="label pull-right">Notifications</span></td>
         <td><strong>Message body goes here</strong></td>
         <td><strong>11:23 PM</strong></td>
@@ -25,19 +25,18 @@
 
 <script type="text/javascript">
     $(function() {
-        var tests = [{ name: 'name', fullName: 'full name' }];
-
-        $.get('api/documents/', function(data) {
-            alert(data);
-        });
-
         var DriveViewModel = function () {
             var self = this;
-
-            self.documents = ko.observableArray(tests);
+            self.documents = ko.observableArray();
         };
 
-        ko.applyBindings(new DriveViewModel());
+        var viewModel = new DriveViewModel();
+        ko.applyBindings(viewModel);
+
+        $.get('api/documents/', function (data) {
+            viewModel.documents(data);
+        });
+
     });
 
 </script>
