@@ -11,8 +11,8 @@ namespace LondonUbfWebDrive.Repositories
         {
             var directory = new DirectoryInfo(path);
             
-            var documents = directory.GetDirectories().Select(d => new Document(d.Name, d.FullName, true)).ToList();
-            documents.AddRange(directory.GetFiles().Select(f => new Document(f.Name, f.FullName, false)));
+            var documents = directory.GetDirectories().Select(d => new Document(d.Name, d.FullName.Replace(path, string.Empty), true)).ToList();
+            documents.AddRange(directory.GetFiles().Select(f => new Document(f.Name, f.FullName.Replace(path, string.Empty), false)));
 
             return documents;
         }
