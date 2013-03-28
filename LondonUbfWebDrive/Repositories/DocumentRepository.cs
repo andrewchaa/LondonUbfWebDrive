@@ -17,7 +17,7 @@ namespace LondonUbfWebDrive.Repositories
             return documents;
         }
 
-        public Document Get(string path)
+        public byte[] Get(string path)
         {
             throw new System.NotImplementedException();
         }

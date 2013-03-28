@@ -16,6 +16,7 @@ namespace LondonUbfWebDrive.Test.Integrations
         protected static Document Document;
         protected static IDocumentRepository Repository;
         protected static string MyDocument;
+        protected static byte[] DocumentBytes;
 
         Establish context = () => MyDocument = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
 
@@ -24,40 +25,41 @@ namespace LondonUbfWebDrive.Test.Integrations
     [Subject(typeof(Document))]
     public class When_it_reads_directories_in_the_given_directory : DocumentRepositoryTests
     {
-        private Establish context = () => Repository = new DocumentRepository(); 
-        private Because it_reads_the_directory = () =>
+        Establish context = () => Repository = new DocumentRepository(); 
+        Because it_reads_the_directory = () =>
             {
-                Documents = Repository.Read(MyDocument);
+                Documents = Repository.List(MyDocument);
             };
 
-        private It should_have_the_non_empty_file_list = () => Documents.ShouldNotBeEmpty();
+        It should_have_the_non_empty_file_list = () => Documents.ShouldNotBeEmpty();
     }
 
     [Subject(typeof(Document))]
     public class When_it_reads_files_in_the_given_directory : DocumentRepositoryTests
     {
-        private Establish context = () => Repository = new DocumentRepository();
-        private Because It_reads_the_files = () => Documents = Repository.Read(MyDocument);
+        Establish context = () => Repository = new DocumentRepository();
+        Because It_reads_the_files = () => Documents = Repository.List(MyDocument);
 
-        private It should_have_the_list_of_files = () => Documents.Where(d => !d.IsDirectory).ShouldNotBeEmpty();
+        It should_have_the_list_of_files = () => Documents.Where(d => !d.IsDirectory).ShouldNotBeEmpty();
     }
 
     [Subject(typeof(Document))]
     public class When_it_reads_a_document : DocumentRepositoryTests
     {
-        private Establish context = () => Repository = new DocumentRepository();
-        private Because It_reads_file_as_document = () => Document = Repository.Read(MyDocument).First();
+        Establish context = () => Repository = new DocumentRepository();
+        Because It_reads_file_as_document = () => Document = Repository.List(MyDocument).First();
 
-        private It should_have_document_name = () => Document.Name.ShouldNotBeEmpty();
-        private It should_have_document_full_name = () => Document.FullName.ShouldNotBeEmpty();
+        It should_have_document_name = () => Document.Name.ShouldNotBeEmpty();
+        It should_have_document_full_name = () => Document.FullName.ShouldNotBeEmpty();
     }
 
     [Subject(typeof(Document))]
     public class When_I_download_a_document : DocumentRepositoryTests
     {
-        private Establish context = () => Repository = new DocumentRepository();
+        Establish context = () => Repository = new DocumentRepository();
 
-//        private Because It_reads_a_file_from_file_system =
-//            () => Document = Repository.Read(Path.Combine(MyDocument, "test.txt"));
+        Because It_reads_a_file_from_file_system = () => DocumentBytes = Repository.Get(Path.Combine(MyDocument, "test.txt"));
+
+        It should_have_the_document_in_bytes_array = () => DocumentBytes.ShouldNotBeEmpty();
     }
 }
