@@ -13,7 +13,7 @@ namespace LondonUbfWebDrive.Controllers
         public IEnumerable<Document> Get()
         {
             var repository = new DocumentRepository();
-            var documents = repository.Read(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments));
+            var documents = repository.List(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments));
 
             return documents;
         }
@@ -22,7 +22,7 @@ namespace LondonUbfWebDrive.Controllers
         public IEnumerable<Document> Get(string id)
         {
             var repository = new DocumentRepository();
-            var documents = repository.Read(id);
+            var documents = repository.List(id);
 
             return documents;
         }

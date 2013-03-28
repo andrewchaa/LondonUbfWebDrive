@@ -7,7 +7,7 @@ namespace LondonUbfWebDrive.Repositories
 {
     public class DocumentRepository : IDocumentRepository
     {
-        public IEnumerable<Document> Read(string path)
+        public IEnumerable<Document> List(string path)
         {
             var directory = new DirectoryInfo(path);
             
@@ -15,6 +15,11 @@ namespace LondonUbfWebDrive.Repositories
             documents.AddRange(directory.GetFiles().Select(f => new Document(f.Name, f.FullName.Replace(path, string.Empty), false)));
 
             return documents;
+        }
+
+        public Document Get(string path)
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

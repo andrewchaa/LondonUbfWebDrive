@@ -51,4 +51,13 @@ namespace LondonUbfWebDrive.Test.Integrations
         private It should_have_document_name = () => Document.Name.ShouldNotBeEmpty();
         private It should_have_document_full_name = () => Document.FullName.ShouldNotBeEmpty();
     }
+
+    [Subject(typeof(Document))]
+    public class When_I_download_a_document : DocumentRepositoryTests
+    {
+        private Establish context = () => Repository = new DocumentRepository();
+
+//        private Because It_reads_a_file_from_file_system =
+//            () => Document = Repository.Read(Path.Combine(MyDocument, "test.txt"));
+    }
 }

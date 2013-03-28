@@ -4,6 +4,6 @@ namespace LondonUbfWebDrive.Domain
 {
     public interface IDocumentRepository
     {
-        IEnumerable<Document> Read(string path);
+        IEnumerable<Document> List(string path);
     }
 }

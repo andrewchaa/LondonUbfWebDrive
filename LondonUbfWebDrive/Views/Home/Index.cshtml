@@ -28,14 +28,17 @@
         var DriveViewModel = function () {
             var self = this;
             self.documents = ko.observableArray();
+            self.load = function() {
+                $.get('api/documents/', function (data) {
+                    self.documents(data);
+                });
+            };
         };
 
         var viewModel = new DriveViewModel();
         ko.applyBindings(viewModel);
 
-        $.get('api/documents/', function (data) {
-            viewModel.documents(data);
-        });
+        viewModel.load();
 
     });
 
