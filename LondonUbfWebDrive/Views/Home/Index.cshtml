@@ -12,10 +12,10 @@
     <th class="span2"></th>
 </tr>
 </thead>
-<tbody data-bind="foreach: documents">
+<tbody data-bind="foreach: documents" id="fileList">
     <tr>
         <td><input type="checkbox"> <a href="#"><i class="icon-star-empty"></i></a></td>
-        <td><a data-bind="text: Name, attr: { href: '#', title: Name }, with: { path: FullName }"></a></td>
+        <td><a data-bind="text: Name, attr: { href: '#', title: Name, 'data-path': FullName }"></a></td>
         <td><span class="label pull-right">Notifications</span></td>
         <td><strong>Message body goes here</strong></td>
         <td><strong>11:23 PM</strong></td>
@@ -28,17 +28,27 @@
         var DriveViewModel = function () {
             var self = this;
             self.documents = ko.observableArray();
-            self.load = function() {
+            self.list = function() {
                 $.get('api/documents/', function (data) {
                     self.documents(data);
                 });
             };
+            self.get = function (path) {
+                window.location.href = 'api/documents' + path;
+            };
+
         };
 
         var viewModel = new DriveViewModel();
         ko.applyBindings(viewModel);
 
-        viewModel.load();
+        viewModel.list();
+
+        $('#fileList').delegate('a', 'click', function() {
+            //console.log($(this).attr('data-path'));
+            var path = $(this).attr('data-path');
+            viewModel.get(path);
+        });
 
     });
 

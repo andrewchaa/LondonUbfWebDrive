@@ -56,9 +56,15 @@ namespace LondonUbfWebDrive.Test.Integrations
     [Subject(typeof(Document))]
     public class When_I_download_a_document : DocumentRepositoryTests
     {
-        Establish context = () => Repository = new DocumentRepository();
+        static string _path;
+        Establish context = () =>
+            {
+                _path = Path.Combine(MyDocument, "test.txt");
+                File.WriteAllText(_path, "Hello world!");
+                Repository = new DocumentRepository();
+            };
 
-        Because It_reads_a_file_from_file_system = () => DocumentBytes = Repository.Get(Path.Combine(MyDocument, "test.txt"));
+        Because It_reads_a_file_from_file_system = () => DocumentBytes = Repository.Get(_path);
 
         It should_have_the_document_in_bytes_array = () => DocumentBytes.ShouldNotBeEmpty();
     }

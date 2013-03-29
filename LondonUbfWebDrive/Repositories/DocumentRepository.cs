@@ -19,7 +19,7 @@ namespace LondonUbfWebDrive.Repositories
 
         public byte[] Get(string path)
         {
-            throw new System.NotImplementedException();
+            return File.ReadAllBytes(path);
         }
     }
 }

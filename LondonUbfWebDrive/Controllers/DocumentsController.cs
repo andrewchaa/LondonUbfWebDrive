@@ -1,5 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
+using System.IO;
+using System.Net;
+using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Web.Helpers;
 using System.Web.Http;
 using LondonUbfWebDrive.Domain;
@@ -9,22 +14,34 @@ namespace LondonUbfWebDrive.Controllers
 {
     public class DocumentsController : ApiController
     {
-        // GET api/document
+        private string _directory;
+
+        public DocumentsController() 
+        {
+            _directory = ConfigurationManager.AppSettings["Directory"];
+        }
+
+        // GET api/documents
         public IEnumerable<Document> Get()
         {
             var repository = new DocumentRepository();
-            var documents = repository.List(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments));
+            var documents = repository.List(_directory);
 
             return documents;
         }
 
-        // GET api/document/5
-        public IEnumerable<Document> Get(string id)
+        // GET api/documents/text.txt
+        public HttpResponseMessage Get(string id)
         {
             var repository = new DocumentRepository();
-            var documents = repository.List(id);
+            var documentBytes = repository.Get(Path.Combine(_directory, id));
 
-            return documents;
+            var stream = new MemoryStream(documentBytes);
+            var result = new HttpResponseMessage(HttpStatusCode.OK);
+            result.Content = new StreamContent(stream);
+            result.Content.Headers.ContentType = new MediaTypeHeaderValue("application/octet-stream");
+
+            return result;
         }
 
         // POST api/document
