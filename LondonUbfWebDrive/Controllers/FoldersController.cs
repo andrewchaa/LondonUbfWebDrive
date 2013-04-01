@@ -2,28 +2,26 @@
 using System.Collections.Generic;
 using System.Configuration;
 using System.IO;
+using System.Linq;
 using System.Net;
 using System.Net.Http;
-using System.Net.Http.Headers;
-using System.Web.Helpers;
 using System.Web.Http;
 using LondonUbfWebDrive.Domain;
-using LondonUbfWebDrive.Repositories;
 
 namespace LondonUbfWebDrive.Controllers
 {
-    public class DocumentsController : ApiController
+    public class FoldersController : ApiController
     {
         private readonly IDocumentRepository _repository;
         private readonly string _baseFolder;
 
-        public DocumentsController(IDocumentRepository repository)
+        public FoldersController(IDocumentRepository repository)
         {
             _repository = repository;
             _baseFolder = ConfigurationManager.AppSettings["Directory"];
         }
 
-        // GET api/documents
+        // GET api/folders
         public IEnumerable<Document> Get()
         {
             var documents = _repository.List(_baseFolder);
@@ -31,30 +29,25 @@ namespace LondonUbfWebDrive.Controllers
             return documents;
         }
 
-        // GET api/documents/text.txt
-        public HttpResponseMessage Get(string id)
+        // GET api/folders/applications
+        public IEnumerable<Document> Get(string id)
         {
-            var documentBytes = _repository.Get(_baseFolder,  id);
+            var documents = _repository.List(_baseFolder, id);
 
-            var stream = new MemoryStream(documentBytes);
-            var result = new HttpResponseMessage(HttpStatusCode.OK);
-            result.Content = new StreamContent(stream);
-            result.Content.Headers.ContentType = new MediaTypeHeaderValue("application/octet-stream");
-
-            return result;
+            return documents;
         }
 
-        // POST api/document
+        // POST api/directory
         public void Post([FromBody]string value)
         {
         }
 
-        // PUT api/document/5
+        // PUT api/directory/5
         public void Put(int id, [FromBody]string value)
         {
         }
 
-        // DELETE api/document/5
+        // DELETE api/directory/5
         public void Delete(int id)
         {
         }

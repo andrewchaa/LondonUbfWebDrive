@@ -15,10 +15,15 @@ namespace LondonUbfWebDrive.Test.Integrations
         protected static IEnumerable<Document> Documents;
         protected static Document Document;
         protected static IDocumentRepository Repository;
-        protected static string MyDocument;
+        protected static string BaseFolder;
+        protected static string CurrentPath;
         protected static byte[] DocumentBytes;
 
-        Establish context = () => MyDocument = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+        Establish context = () =>
+            {
+                BaseFolder = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+                CurrentPath = "/";
+            };
 
     }
 
@@ -28,7 +33,7 @@ namespace LondonUbfWebDrive.Test.Integrations
         Establish context = () => Repository = new DocumentRepository(); 
         Because it_reads_the_directory = () =>
             {
-                Documents = Repository.List(MyDocument);
+                Documents = Repository.List(BaseFolder, CurrentPath);
             };
 
         It should_have_the_non_empty_file_list = () => Documents.ShouldNotBeEmpty();
@@ -38,16 +43,16 @@ namespace LondonUbfWebDrive.Test.Integrations
     public class When_it_reads_files_in_the_given_directory : DocumentRepositoryTests
     {
         Establish context = () => Repository = new DocumentRepository();
-        Because It_reads_the_files = () => Documents = Repository.List(MyDocument);
+        Because It_reads_the_files = () => Documents = Repository.List(BaseFolder, CurrentPath);
 
-        It should_have_the_list_of_files = () => Documents.Where(d => !d.IsDirectory).ShouldNotBeEmpty();
+        It should_have_the_list_of_files = () => Documents.Where(d => !d.IsFolder).ShouldNotBeEmpty();
     }
 
     [Subject(typeof(Document))]
     public class When_it_reads_a_document : DocumentRepositoryTests
     {
         Establish context = () => Repository = new DocumentRepository();
-        Because It_reads_file_as_document = () => Document = Repository.List(MyDocument).First();
+        Because It_reads_file_as_document = () => Document = Repository.List(BaseFolder, CurrentPath).First();
 
         It should_have_document_name = () => Document.Name.ShouldNotBeEmpty();
         It should_have_document_full_name = () => Document.FullName.ShouldNotBeEmpty();
@@ -59,12 +64,12 @@ namespace LondonUbfWebDrive.Test.Integrations
         static string _path;
         Establish context = () =>
             {
-                _path = Path.Combine(MyDocument, "test.txt");
+                _path = Path.Combine(BaseFolder, "test.txt");
                 File.WriteAllText(_path, "Hello world!");
                 Repository = new DocumentRepository();
             };
 
-        Because It_reads_a_file_from_file_system = () => DocumentBytes = Repository.Get(_path);
+        Because It_reads_a_file_from_file_system = () => DocumentBytes = Repository.Get(BaseFolder, _path);
 
         It should_have_the_document_in_bytes_array = () => DocumentBytes.ShouldNotBeEmpty();
     }

@@ -7,19 +7,27 @@ namespace LondonUbfWebDrive.Repositories
 {
     public class DocumentRepository : IDocumentRepository
     {
-        public IEnumerable<Document> List(string path)
+        public IEnumerable<Document> List(string baseFolder, string path)
         {
-            var directory = new DirectoryInfo(path);
+
+            var directory = new DirectoryInfo(Path.Combine(baseFolder, path));
             
-            var documents = directory.GetDirectories().Select(d => new Document(d.Name, d.FullName.Replace(path, string.Empty), true)).ToList();
-            documents.AddRange(directory.GetFiles().Select(f => new Document(f.Name, f.FullName.Replace(path, string.Empty), false)));
+            var documents = directory.GetDirectories().Select(d => new Document(d.Name, d.FullName.Replace(baseFolder, string.Empty), true)).ToList();
+            documents.AddRange(directory.GetFiles().Select(f => new Document(f.Name, f.FullName.Replace(baseFolder, string.Empty), false)));
 
             return documents;
         }
 
-        public byte[] Get(string path)
+        public IEnumerable<Document> List(string baseFolder)
         {
-            return File.ReadAllBytes(path);
+            return List(baseFolder, string.Empty);
+        }
+
+        public byte[] Get(string baseFolder, string path)
+        {
+            return File.ReadAllBytes(Path.Combine(baseFolder, path));
         }
     }
+
+
 }
