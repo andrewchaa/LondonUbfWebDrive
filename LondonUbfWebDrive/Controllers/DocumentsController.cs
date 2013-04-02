@@ -20,7 +20,7 @@ namespace LondonUbfWebDrive.Controllers
         public DocumentsController(IDocumentRepository repository)
         {
             _repository = repository;
-            _baseFolder = ConfigurationManager.AppSettings["Directory"];
+            _baseFolder = ConfigurationManager.AppSettings["BaseFolder"];
         }
 
         // GET api/documents

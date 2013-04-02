@@ -17,10 +17,10 @@ namespace LondonUbfWebDrive.Repositories
         {
             var breadcrumbs = new List<Breadcrumb>();
             breadcrumbs.Add(new Breadcrumb("Home", "\\"));
-            if (_baseFolder == path)
+            if (path == "\\")
                 return breadcrumbs;
 
-            var relativePath = path.Replace(_baseFolder, string.Empty).TrimStart('\\');
+            var relativePath = path.Replace(_baseFolder, string.Empty).Trim('\\');
             var folders = relativePath.Split('\\');
             
             for (int i = 0; i < folders.Length; i++)

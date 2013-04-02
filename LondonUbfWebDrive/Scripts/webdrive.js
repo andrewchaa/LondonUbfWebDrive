@@ -15,7 +15,12 @@
     self.get = function (path) {
         window.location.href = 'api/documents' + path;
     };
-    
+    self.getBreadcrumbs = function(path) {
+        $.get('api/breadcrumbs' + path, function(data) {
+            self.breadcrumbs(data);
+        });
+    };
+
 };
 
 $(function () {
@@ -24,6 +29,7 @@ $(function () {
     ko.applyBindings(viewModel);
 
     viewModel.list();
+    viewModel.getBreadcrumbs('/');
 
     $('#fileList').delegate('a', 'click', function (e) {
         e.preventDefault();
@@ -32,6 +38,7 @@ $(function () {
         var isFolder = $(this).attr('data-isfolder');
         if (!!isFolder) {
             viewModel.list(path);
+            viewModel.getBreadcrumbs(path);
         } else {
             viewModel.get(path);
         }
@@ -43,6 +50,7 @@ $(function () {
 
         var path = $(this).attr('data-path');
         viewModel.list(path);
+        viewModel.getBreadcrumbs(path);
     });
 
 });

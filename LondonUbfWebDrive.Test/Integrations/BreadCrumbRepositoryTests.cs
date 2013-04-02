@@ -33,7 +33,7 @@ namespace LondonUbfWebDrive.Test.Integrations
     {
         Establish context = () => Repository = new BreadcrumbRepository(BaseFolder);
 
-        Because Base_folder_is_a_home_directory = () => Breadcrumbs = Repository.List(BaseFolder);
+        Because Base_folder_is_a_home_directory = () => Breadcrumbs = Repository.List("\\");
 
         It should_have_only_home_in_the_breadcrumb = () => Breadcrumbs.Count().ShouldEqual(1);
         It should_have_Home_Breadcrumb_Name = () => Breadcrumbs.First().Name.ShouldEqual("Home");
