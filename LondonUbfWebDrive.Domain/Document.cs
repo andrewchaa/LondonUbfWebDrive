@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace LondonUbfWebDrive.Domain
+﻿namespace LondonUbfWebDrive.Domain
 {
     public class Document
     {

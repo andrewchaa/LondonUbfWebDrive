@@ -18,6 +18,7 @@ namespace LondonUbfWebDrive.Test.Integrations
         protected static string BaseFolder;
         protected static string CurrentPath;
         protected static byte[] DocumentBytes;
+        protected static string FilePath;
 
         Establish context = () =>
             {
@@ -61,16 +62,16 @@ namespace LondonUbfWebDrive.Test.Integrations
     [Subject(typeof(Document))]
     public class When_I_download_a_document : DocumentRepositoryTests
     {
-        static string _path;
         Establish context = () =>
             {
-                _path = Path.Combine(BaseFolder, "test.txt");
-                File.WriteAllText(_path, "Hello world!");
+                FilePath = Path.Combine(BaseFolder, "test.txt");
+                File.WriteAllText(FilePath, "Hello world!");
                 Repository = new DocumentRepository();
             };
 
-        Because It_reads_a_file_from_file_system = () => DocumentBytes = Repository.Get(BaseFolder, _path);
+        Because It_reads_a_file_from_file_system = () => DocumentBytes = Repository.Get(BaseFolder, FilePath);
 
         It should_have_the_document_in_bytes_array = () => DocumentBytes.ShouldNotBeEmpty();
     }
+
 }

@@ -32,9 +32,9 @@ namespace LondonUbfWebDrive.Controllers
         }
 
         // GET api/documents/text.txt
-        public HttpResponseMessage Get(string id)
+        public HttpResponseMessage Get(string path)
         {
-            var documentBytes = _repository.Get(_baseFolder,  id);
+            var documentBytes = _repository.Get(_baseFolder,  path);
 
             var stream = new MemoryStream(documentBytes);
             var result = new HttpResponseMessage(HttpStatusCode.OK);

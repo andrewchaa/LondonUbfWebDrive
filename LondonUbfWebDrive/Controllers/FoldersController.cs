@@ -30,9 +30,9 @@ namespace LondonUbfWebDrive.Controllers
         }
 
         // GET api/folders/applications
-        public IEnumerable<Document> Get(string id)
+        public IEnumerable<Document> Get(string path)
         {
-            var documents = _repository.List(_baseFolder, id);
+            var documents = _repository.List(_baseFolder, path);
 
             return documents;
         }
