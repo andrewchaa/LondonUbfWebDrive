@@ -151,6 +151,7 @@
     <Compile Include="Infrastructure\NinjectResolver.cs" />
     <Compile Include="Infrastructure\NinjectScope.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\BreadcrumbRepository.cs" />
     <Compile Include="Repositories\DocumentRepository.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -1,9 +1,6 @@
 ﻿var DriveViewModel = function () {
     var self = this;
     self.breadcrumbs = ko.observableArray();
-//    self.breadcrumbs = ko.observableArray([
-//        { name: 'Home', path: "/"}
-//    ]);
     self.documents = ko.observableArray();
     self.list = function (path) {
         var uri = 'api/folders';
