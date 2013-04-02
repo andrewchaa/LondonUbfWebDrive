@@ -57,6 +57,7 @@ namespace LondonUbfWebDrive.Test.Integrations
 
         It should_have_document_name = () => Document.Name.ShouldNotBeEmpty();
         It should_have_document_full_name = () => Document.FullName.ShouldNotBeEmpty();
+        It should_have_date_modified = () => Document.DateModified.ShouldNotBeEmpty();
     }
 
     [Subject(typeof(Document))]

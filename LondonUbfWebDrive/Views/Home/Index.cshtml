@@ -1,27 +1,31 @@
 ﻿<h1>Web drive</h1>
 <p>Browse and downlaod message files at the church</p>
 
+<div class="row">
+    <div class="span8">
+        <table class="table table-condensed table-hover">
+            <thead>
+                <tr>
+                    <th class="span5"></th>
+                    <th class="span2"></th>
+                </tr>
+            </thead>
+            <tbody data-bind="foreach: documents" id="fileList">
+                <tr>
+                    <td>
+                        <i data-bind="css: { 'icon-folder-close': IsFolder, 'icon-file': !IsFolder }"></i> 
+                        <a data-bind="text: Name, attr: { href: '#', title: Name, 'data-path': FullName, 'data-isfolder': IsFolder }"></a>
+                    </td>
+                    <td><span data-bind="text: DateModified">11:23 PM</span></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="span4">
+        Somethings goes here
+    </div>
+</div>
 
-<table class="table table-condensed table-hover">
-<thead>
-<tr>
-    <th class="span1"><input type="checkbox"></th>
-    <th class="span2"></th>
-    <th class="span2"></th>
-    <th class="span9"></th>
-    <th class="span2"></th>
-</tr>
-</thead>
-<tbody data-bind="foreach: documents" id="fileList">
-    <tr>
-        <td><input type="checkbox"> <a href="#"><i class="icon-star-empty"></i></a></td>
-        <td><a data-bind="text: Name, attr: { href: '#', title: Name, 'data-path': FullName, 'data-isfolder': IsFolder }"></a></td>
-        <td><span class="label pull-right">Notifications</span></td>
-        <td><strong>Message body goes here</strong></td>
-        <td><strong>11:23 PM</strong></td>
-    </tr>
-</tbody>
-</table>
 
 <script type="text/javascript">
     $(function() {
