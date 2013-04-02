@@ -39,7 +39,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Breadcrumb.cs" />
     <Compile Include="Document.cs" />
+    <Compile Include="DocumentMap.cs" />
     <Compile Include="IDocumentRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

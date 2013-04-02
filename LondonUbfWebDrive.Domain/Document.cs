@@ -7,12 +7,13 @@
         public bool IsFolder { get; private set; }
         public string DateModified { get; private set; }
 
-        public Document(string name, string fullName, string dateModified, bool isDirectory)
+        public Document(string name, string fullName, string dateModified, bool isFolder)
         {
             Name = name;
             FullName = fullName;
             DateModified = dateModified;
-            IsFolder = isDirectory;
+            IsFolder = isFolder;
         }
     }
+
 }
