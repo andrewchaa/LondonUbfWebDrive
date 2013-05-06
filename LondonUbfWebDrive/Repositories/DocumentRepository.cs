@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text.RegularExpressions;
 using LondonUbfWebDrive.Domain;
 
 namespace LondonUbfWebDrive.Repositories
@@ -13,7 +14,6 @@ namespace LondonUbfWebDrive.Repositories
             var directory = new DirectoryInfo(Path.Combine(baseFolder, path));
 
             var documents = new List<Document>();
-            documents.Add(GetParentFolder(baseFolder));
             documents.AddRange(GetFolders(baseFolder, directory));
             documents.AddRange(GetFiles(baseFolder, directory));
 
@@ -30,29 +30,38 @@ namespace LondonUbfWebDrive.Repositories
             return File.ReadAllBytes(Path.Combine(baseFolder, path));
         }
 
-        private static Document GetParentFolder(string baseFolder)
+        private IEnumerable<Document> GetFiles(string baseFolder, DirectoryInfo directory)
         {
-            return new Document("...", baseFolder, string.Empty, true);
+            return directory.GetFiles().Select(file => new Document(
+                file.Name, 
+                file.FullName.Replace(baseFolder, string.Empty), 
+                file.LastWriteTimeUtc.ToShortDateString(), 
+                false, 
+                GetFileImage(file.Extension))).ToList();
         }
 
-        private static IEnumerable<Document> GetFiles(string baseFolder, DirectoryInfo directory)
+        private string GetFileImage(string extension)
         {
-            return directory.GetFiles().Select(f => new Document(
-                                                        f.Name, 
-                                                        f.FullName.Replace(baseFolder, string.Empty), 
-                                                        f.LastWriteTime.ToString(),
-                                                        false
-                                                        ));
+            switch (extension)
+            {
+                case ".pdf": 
+                    return "/Images/pdf.png";
+                case ".zip":
+                    return "/Images/zip.png";
+            }
+
+            return "/Images/document.jpg";
         }
 
-        private static IEnumerable<Document> GetFolders(string baseFolder, DirectoryInfo directory)
+        private IEnumerable<Document> GetFolders(string baseFolder, DirectoryInfo directory)
         {
             return directory.GetDirectories()
                             .Select(d => new Document(
                                              d.Name, 
                                              d.FullName.Replace(baseFolder, string.Empty),
                                              d.LastWriteTime.ToString(),
-                                             true
+                                             true,
+                                             "/Images/folder.png"
                                              ))
                             .ToList();
         }

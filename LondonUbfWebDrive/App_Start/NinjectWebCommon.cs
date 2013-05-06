@@ -62,7 +62,7 @@ namespace LondonUbfWebDrive.App_Start
         private static void RegisterServices(IKernel kernel)
         {
             kernel.Bind<IDocumentRepository>().To<DocumentRepository>();
-            kernel.Bind<IBreadcrumbRepository>().To<BreadcrumbRepository>().WithConstructorArgument("baseFolder", ConfigurationManager.AppSettings["BaseFolder"]);
+            kernel.Bind<IBreadcrumbMaker>().To<BreadcrumbMaker>();
         }        
     }
 }

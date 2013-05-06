@@ -35,6 +35,8 @@ $(function () {
         e.preventDefault();
 
         var path = $(this).attr('data-path');
+        console.log(path);
+
         var isFolder = $(this).attr('data-isfolder');
         if (!!isFolder) {
             viewModel.list(path);

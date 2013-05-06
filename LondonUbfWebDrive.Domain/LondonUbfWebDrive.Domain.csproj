@@ -40,9 +40,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Breadcrumb.cs" />
+    <Compile Include="BreadcrumbMaker.cs" />
     <Compile Include="Document.cs" />
     <Compile Include="DocumentMap.cs" />
-    <Compile Include="IBreadcrumbRepository.cs" />
+    <Compile Include="IBreadcrumbMaker.cs" />
     <Compile Include="IDocumentRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

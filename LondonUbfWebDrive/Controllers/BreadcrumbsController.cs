@@ -1,33 +1,28 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
+﻿using System.Collections.Generic;
 using System.Web.Http;
 using LondonUbfWebDrive.Domain;
-using LondonUbfWebDrive.Repositories;
 
 namespace LondonUbfWebDrive.Controllers
 {
     public class BreadcrumbsController : ApiController
     {
-        private readonly IBreadcrumbRepository _repository;
+        private readonly IBreadcrumbMaker _breadcrumbMaker;
 
-        public BreadcrumbsController(IBreadcrumbRepository repository)
+        public BreadcrumbsController(IBreadcrumbMaker breadcrumbMaker)
         {
-            _repository = repository;
+            _breadcrumbMaker = breadcrumbMaker;
         }
 
         // GET api/breadcrumbs/5
         public IEnumerable<Breadcrumb> Get()
         {
-            return _repository.List("\\");
+            return _breadcrumbMaker.Make(string.Empty);
         }
 
         // GET api/breadcrumbs/5
         public IEnumerable<Breadcrumb> Get(string path)
         {
-            return _repository.List(path);
+            return _breadcrumbMaker.Make(path);
         }
 
     }

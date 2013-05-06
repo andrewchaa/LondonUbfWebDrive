@@ -1,4 +1,10 @@
-﻿<h1>Web drive</h1>
+﻿<style>
+    .folder-img {
+        background-image: url('/Images/folder.png');
+    }
+ </style>
+
+<h1>Web drive</h1>
 <p>Browse and downlaod message files at the church</p>
 
 <ul class="breadcrumb" id="breaddcrumb" data-bind="foreach: breadcrumbs">
@@ -17,7 +23,7 @@
             <tbody data-bind="foreach: documents" id="fileList">
                 <tr>
                     <td>
-                        <i data-bind="css: { 'icon-folder-close': IsFolder, 'icon-file': !IsFolder }"></i> 
+                        <img data-bind="attr: {src: ImagePath}" />
                         <a data-bind="text: Name, attr: { href: '#', title: Name, 'data-path': FullName, 'data-isfolder': IsFolder }"></a>
                     </td>
                 </tr>
@@ -29,4 +35,4 @@
     </div>
 </div>
 
-<script src="~/Scripts/webdrive.js"></script>
+@Scripts.Render("~/Scripts/webdrive.js")

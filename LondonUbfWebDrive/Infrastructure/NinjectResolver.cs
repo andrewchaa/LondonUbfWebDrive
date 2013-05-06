@@ -6,7 +6,7 @@ namespace LondonUbfWebDrive.Infrastructure
 {
     public class NinjectResolver : NinjectScope, IDependencyResolver
     {
-        private IKernel _kernel;
+        private readonly IKernel _kernel;
 
         public NinjectResolver(IKernel kernel) : base(kernel)
         {

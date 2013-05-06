@@ -45,9 +45,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Integrations\BreadCrumbRepositoryTests.cs" />
     <Compile Include="Integrations\DocumentRepositoryTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Unit\BreadcrumbTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

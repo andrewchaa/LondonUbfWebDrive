@@ -152,7 +152,6 @@
     <Compile Include="Infrastructure\NinjectResolver.cs" />
     <Compile Include="Infrastructure\NinjectScope.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repositories\BreadcrumbRepository.cs" />
     <Compile Include="Repositories\DocumentRepository.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -165,6 +164,10 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
+    <Content Include="Images\document.jpg" />
+    <Content Include="Images\folder.png" />
+    <Content Include="Images\pdf.png" />
+    <Content Include="Images\zip.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\html5shiv.js" />
