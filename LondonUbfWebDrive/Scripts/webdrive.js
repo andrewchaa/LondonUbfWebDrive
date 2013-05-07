@@ -13,7 +13,17 @@
         });
     };
     self.get = function (path) {
-        window.location.href = 'api/documents' + path;
+        var hiddneIFrameId = 'hiddenDownloader',
+            iframe = document.getElementById(hiddneIFrameId);
+        
+        if (iframe === null) {
+            iframe = document.createElement('iframe');
+            iframe.id = hiddneIFrameId;
+            iframe.style.display = 'none';
+            document.body.appendChild(iframe);
+        }
+        iframe.src = 'api/documents' + path;
+//        window.location.href = 'api/documents' + path;
     };
     self.getBreadcrumbs = function(path) {
         $.get('api/breadcrumbs' + path, function(data) {

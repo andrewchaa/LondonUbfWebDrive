@@ -37,11 +37,14 @@ namespace LondonUbfWebDrive.Controllers
             var documentBytes = _repository.Get(_baseFolder,  path);
 
             var stream = new MemoryStream(documentBytes);
-            var result = new HttpResponseMessage(HttpStatusCode.OK);
-            result.Content = new StreamContent(stream);
-            result.Content.Headers.ContentType = new MediaTypeHeaderValue("application/octet-stream");
+            var response = new HttpResponseMessage(HttpStatusCode.OK);
+            response.StatusCode = HttpStatusCode.OK;
+            response.Content = new StreamContent(stream);
+            response.Content.Headers.ContentType = new MediaTypeHeaderValue("application/octet-stream");
+            response.Content.Headers.ContentDisposition = new ContentDispositionHeaderValue("attachment");
+            response.Content.Headers.ContentDisposition.FileName = Path.GetFileName(path);
 
-            return result;
+            return response;
         }
 
         // POST api/document

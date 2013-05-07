@@ -7,6 +7,7 @@
         public bool IsFolder { get; private set; }
         public string DateModified { get; private set; }
         public string ImagePath { get; private set; }
+        public byte[] ContentBytes { get; private set; }
 
         public Document(string name, string fullName, string dateModified, bool isFolder, string imagePath)
         {
