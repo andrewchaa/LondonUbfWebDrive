@@ -164,9 +164,12 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
-    <Content Include="Images\document.jpg" />
+    <Content Include="Images\document.png" />
+    <Content Include="Images\excel.png" />
     <Content Include="Images\folder.png" />
     <Content Include="Images\pdf.png" />
+    <Content Include="Images\powerpoint.png" />
+    <Content Include="Images\word.png" />
     <Content Include="Images\zip.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />

@@ -42,15 +42,30 @@ namespace LondonUbfWebDrive.Repositories
 
         private string GetFileImage(string extension)
         {
+            string image = "document.png";
             switch (extension)
             {
                 case ".pdf": 
-                    return "/Images/pdf.png";
+                    image = "pdf.png";
+                    break;
                 case ".zip":
-                    return "/Images/zip.png";
+                    image = "zip.png";
+                    break;
+                case ".doc":
+                case ".docx":
+                    image = "word.png";
+                    break;
+                case ".xlsx":
+                case ".xls":
+                    image = "excel.png";
+                    break;
+                case ".ppt":
+                case ".pptx":
+                    image = "powerpoint.png";
+                    break;
             }
-
-            return "/Images/document.jpg";
+            
+            return "/Images/" + image;
         }
 
         private IEnumerable<Document> GetFolders(string baseFolder, DirectoryInfo directory)
