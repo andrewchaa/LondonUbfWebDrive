@@ -1,22 +1,17 @@
 ﻿<h1>Web drive</h1>
-<p>Browse and downlaod files</p>
+<p>
+    Browse and downlaod files<br />
+    If you find any issue or have suggestions, please let me know by email: <a href="mailto:andrew.chaa@yahoo.co.uk">andrew.chaa@yahoo.co.uk</a>.<br />
+    If you hav a Github account, you can create an issue on <a href="https://github.com/andrewchaa/LondonUbfWebDrive/issues" target="_blank">Gibhub</a>.
+</p>
 
-<ul class="breadcrumb" id="breaddcrumb" data-bind="foreach: breadcrumbs">
-    <li><a href="#" data-bind="text: Name, attr: { 'data-path': Path } "></a><span class="divider">/</span></li>
-</ul>
 
 <div class="row">
     <div class="span9">
-        
-
-
-        <table class="table table-condensed table-hover table-striped">
-            <thead>
-                <tr>
-                    <th class="span5"></th>
-                    <th class="span2"></th>
-                </tr>
-            </thead>
+        <ul class="breadcrumb" id="breaddcrumb" data-bind="foreach: breadcrumbs">
+            <li><a href="#" data-bind="text: Name, attr: { 'data-path': Path } "></a><span class="divider">/</span></li>
+        </ul>
+        <table class="table table-hover table-striped">
             <tbody data-bind="foreach: documents" id="fileList">
                 <tr>
                     <td>
