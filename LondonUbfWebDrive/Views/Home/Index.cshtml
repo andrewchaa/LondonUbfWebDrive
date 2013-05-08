@@ -5,19 +5,19 @@
     If you hav a Github account, you can create an issue on <a href="https://github.com/andrewchaa/LondonUbfWebDrive/issues" target="_blank">Gibhub</a>.
 </p>
 
-
 <div class="row">
     <div class="span9">
         <ul class="breadcrumb" id="breaddcrumb" data-bind="foreach: breadcrumbs">
-            <li><a href="#" data-bind="text: Name, attr: { 'data-path': Path } "></a><span class="divider">/</span></li>
+            <li>
+                <a href="#" data-bind="text: Name, attr: { 'data-path': Path } "></a>
+                <span class="divider">/</span>
+            </li>
         </ul>
-        <table class="table table-hover table-striped">
+        <table class="table table-hover table-striped table-condensed">
             <tbody data-bind="foreach: documents" id="fileList">
                 <tr>
-                    <td>
-                        <img data-bind="attr: {src: ImagePath}" />
-                        <a data-bind="text: Name, attr: { href: '#', title: Name, 'data-path': FullName, 'data-isfolder': IsFolder }"></a>
-                    </td>
+                    <td class="span1"><img data-bind="attr: {src: ImagePath}" alt="icon" /></td>
+                    <td><a data-bind="text: Name, attr: { href: '#', title: Name, 'data-path': FullName, 'data-isfolder': IsFolder }"></a></td>
                 </tr>
             </tbody>
         </table>

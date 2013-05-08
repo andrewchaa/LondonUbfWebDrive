@@ -167,6 +167,7 @@
     <Content Include="Images\document.png" />
     <Content Include="Images\excel.png" />
     <Content Include="Images\folder.png" />
+    <Content Include="Images\mp3.png" />
     <Content Include="Images\pdf.png" />
     <Content Include="Images\powerpoint.png" />
     <Content Include="Images\word.png" />

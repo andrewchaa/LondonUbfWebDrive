@@ -23,9 +23,9 @@
             document.body.appendChild(iframe);
         }
         iframe.src = 'api/documents' + path;
-//        window.location.href = 'api/documents' + path;
     };
-    self.getBreadcrumbs = function(path) {
+
+    self.getBreadcrumbs = function (path) {
         $.get('api/breadcrumbs' + path, function(data) {
             self.breadcrumbs(data);
         });

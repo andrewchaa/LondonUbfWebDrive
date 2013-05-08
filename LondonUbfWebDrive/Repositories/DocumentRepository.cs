@@ -55,13 +55,16 @@ namespace LondonUbfWebDrive.Repositories
                 case ".docx":
                     image = "word.png";
                     break;
-                case ".xlsx":
-                case ".xls":
-                    image = "excel.png";
+                case ".mp3":
+                    image = "mp3.png";
                     break;
                 case ".ppt":
                 case ".pptx":
                     image = "powerpoint.png";
+                    break;
+                case ".xlsx":
+                case ".xls":
+                    image = "excel.png";
                     break;
             }
             

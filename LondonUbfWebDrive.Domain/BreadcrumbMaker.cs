@@ -8,16 +8,16 @@ namespace LondonUbfWebDrive.Domain
         public IEnumerable<Breadcrumb> Make(string path)
         {
             var breadcrumbs = new List<Breadcrumb>();
-            breadcrumbs.Add(new Breadcrumb("Home", "\\"));
+            breadcrumbs.Add(new Breadcrumb("Home", string.Empty));
 
             if (string.IsNullOrEmpty(path))
                 return breadcrumbs;
 
             var folderNames = path.Split('/');
-            string folderPath = "\\";
+            string folderPath = string.Empty;
             foreach (var name in folderNames)
             {
-                folderPath += name + "\\";
+                folderPath += "\\" + name;
                 breadcrumbs.Add(new Breadcrumb(name, folderPath));
             }
 
