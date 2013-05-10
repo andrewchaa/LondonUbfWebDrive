@@ -10,7 +10,7 @@
 
     <title>@ViewBag.Title</title>
     @Styles.Render("~/Content/bootstrap.min.css")
-    
+
     <style>
       body {
         padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
@@ -27,6 +27,16 @@
     @Scripts.Render("~/Scripts/jquery-1.9.1.min.js")
     @Scripts.Render("~/Scripts/bootstrap.min.js")
     @Scripts.Render("~/Scripts/knockout-2.2.1.js")
+
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-2526213-9', 'londonubf.homeip.net');
+      ga('send', 'pageview');
+    </script>
 
 </head>
 <body>
