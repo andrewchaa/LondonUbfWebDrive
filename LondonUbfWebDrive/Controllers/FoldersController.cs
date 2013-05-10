@@ -12,19 +12,19 @@ namespace LondonUbfWebDrive.Controllers
 {
     public class FoldersController : ApiController
     {
-        private readonly IDocumentRepository _repository;
+        private readonly IDocumentReader _reader;
         private readonly string _baseFolder;
 
-        public FoldersController(IDocumentRepository repository)
+        public FoldersController(IDocumentReader reader)
         {
-            _repository = repository;
+            _reader = reader;
             _baseFolder = ConfigurationManager.AppSettings["BaseFolder"];
         }
 
         // GET api/folders
         public IEnumerable<Document> Get()
         {
-            var documents = _repository.List(_baseFolder);
+            var documents = _reader.List(_baseFolder);
 
             return documents;
         }
@@ -32,7 +32,7 @@ namespace LondonUbfWebDrive.Controllers
         // GET api/folders/applications
         public IEnumerable<Document> Get(string path)
         {
-            var documents = _repository.List(_baseFolder, path);
+            var documents = _reader.List(_baseFolder, path);
 
             return documents;
         }

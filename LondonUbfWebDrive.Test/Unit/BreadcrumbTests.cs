@@ -20,7 +20,6 @@ namespace LondonUbfWebDrive.Test.Unit
             Because of = () => _breakcrumbs = _breadcrumbMaker.Make(string.Empty);
 
             It should_have_home = () => _breakcrumbs.First().Name.ShouldEqual("Home");
-            It should_have_the_root_path = () => _breakcrumbs.First().Path.ShouldEqual("\\");
         }
 
         public class When_you_navigate_the_a_folder
@@ -34,7 +33,6 @@ namespace LondonUbfWebDrive.Test.Unit
             Because of = () => _breakcrumbs = _breadcrumbMaker.Make(_folderName);
 
             It should_have_home = () => _breakcrumbs.First().Name.ShouldEqual("Home");
-            It should_have_the_root_path = () => _breakcrumbs.First().Path.ShouldEqual("\\");
             It should_have_the_folder_name = () => _breakcrumbs.Skip(1).First().Name.ShouldEqual(_folderName);
             It should_have_the_folder_path = () => _breakcrumbs.Skip(1).First().Path.ShouldEqual("\\" + _folderName);
         }
@@ -53,7 +51,6 @@ namespace LondonUbfWebDrive.Test.Unit
             Because of = () => _breakcrumbs = _breadcrumbMaker.Make(_path);
 
             It should_have_home = () => _breakcrumbs.First().Name.ShouldEqual("Home");
-            It should_have_the_root_path = () => _breakcrumbs.First().Path.ShouldEqual("\\");
             It should_have_the_folder_name = () => _breakcrumbs.Skip(1).First().Name.ShouldEqual(_folder);
             It should_have_the_folder_path = () => _breakcrumbs.Skip(1).First().Path.ShouldEqual("\\" + _folder);
             It should_have_the_subfolder_name = () => _breakcrumbs.Skip(2).First().Name.ShouldEqual(_subfolder);

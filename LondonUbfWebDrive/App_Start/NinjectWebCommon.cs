@@ -61,7 +61,7 @@ namespace LondonUbfWebDrive.App_Start
         /// <param name="kernel">The kernel.</param>
         private static void RegisterServices(IKernel kernel)
         {
-            kernel.Bind<IDocumentRepository>().To<DocumentRepository>();
+            kernel.Bind<IDocumentReader>().To<DocumentReader>();
             kernel.Bind<IBreadcrumbMaker>().To<BreadcrumbMaker>();
         }        
     }

@@ -44,7 +44,7 @@
     <Compile Include="Document.cs" />
     <Compile Include="DocumentMap.cs" />
     <Compile Include="IBreadcrumbMaker.cs" />
-    <Compile Include="IDocumentRepository.cs" />
+    <Compile Include="IDocumentReader.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

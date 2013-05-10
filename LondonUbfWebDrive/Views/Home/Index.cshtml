@@ -15,7 +15,11 @@
         <table class="table table-hover table-striped table-condensed">
             <tbody data-bind="foreach: documents" id="fileList">
                 <tr>
-                    <td class="span1"><img data-bind="attr: {src: ImagePath}" alt="icon" /></td>
+                    <td class="span1">
+                        <a data-bind="attr: { href: '#', title: Name, 'data-path': FullName, 'data-isfolder': IsFolder  }">
+                            <img data-bind="attr: {src: ImagePath}" alt="icon" />
+                        </a>
+                    </td>
                     <td><a data-bind="text: Name, attr: { href: '#', title: Name, 'data-path': FullName, 'data-isfolder': IsFolder }"></a></td>
                 </tr>
             </tbody>

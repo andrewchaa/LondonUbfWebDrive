@@ -1,16 +1,16 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text.RegularExpressions;
 using LondonUbfWebDrive.Domain;
 
 namespace LondonUbfWebDrive.Repositories
 {
-    public class DocumentRepository : IDocumentRepository
+    public class DocumentReader : IDocumentReader
     {
+        private readonly string _baseFolder;
+
         public IEnumerable<Document> List(string baseFolder, string path)
         {
-
             var directory = new DirectoryInfo(Path.Combine(baseFolder, path));
 
             var documents = new List<Document>();
@@ -32,12 +32,16 @@ namespace LondonUbfWebDrive.Repositories
 
         private IEnumerable<Document> GetFiles(string baseFolder, DirectoryInfo directory)
         {
-            return directory.GetFiles().Select(file => new Document(
-                file.Name, 
-                file.FullName.Replace(baseFolder, string.Empty), 
-                file.LastWriteTimeUtc.ToShortDateString(), 
-                false, 
-                GetFileImage(file.Extension))).ToList();
+            return directory
+                .GetFiles()
+                .Where(f => !f.Name.StartsWith("~"))
+                .Select(file => new Document(
+                                file.Name,
+                                file.FullName.Replace(baseFolder, string.Empty),
+                                file.LastWriteTimeUtc.ToShortDateString(),
+                                false,
+                                GetFileImage(file.Extension))
+                                ).ToList();
         }
 
         private string GetFileImage(string extension)

@@ -3,7 +3,7 @@ using System.IO;
 
 namespace LondonUbfWebDrive.Domain
 {
-    public interface IDocumentRepository
+    public interface IDocumentReader
     {
         IEnumerable<Document> List(string baseFolder, string path);
         IEnumerable<Document> List(string baseFolder);
