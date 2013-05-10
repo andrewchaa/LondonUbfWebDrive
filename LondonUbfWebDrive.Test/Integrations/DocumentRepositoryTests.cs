@@ -41,24 +41,6 @@ namespace LondonUbfWebDrive.Test.Integrations
     }
 
     [Subject(typeof(Document))]
-    public class When_it_reads_a_sub_folder: DocumentRepositoryTests
-    {
-        static string _tempPath;
-        Establish context = () =>
-            {
-                _tempPath = Path.Combine(BaseFolder, "Temp");
-                Directory.CreateDirectory(_tempPath);
-                Repository = new DocumentRepository();
-            }; 
-
-        Because it_reads_a_sub_folder = () => Documents = Repository.List(BaseFolder, CurrentPath);
-
-        It should_have_the_base_folder_as_parent_directory = () => Documents.ShouldContain(d => d.Name == "...");
-
-        Cleanup delete_the_temp_folder = () => Directory.Delete(_tempPath);
-    }
-
-    [Subject(typeof(Document))]
     public class When_it_reads_files_in_the_given_directory : DocumentRepositoryTests
     {
         Establish context = () => Repository = new DocumentRepository();
@@ -66,7 +48,7 @@ namespace LondonUbfWebDrive.Test.Integrations
 
         It should_have_the_list_of_files = () => Documents.Where(d => !d.IsFolder).ShouldNotBeEmpty();
     }
-
+    
     [Subject(typeof(Document))]
     public class When_it_reads_a_document : DocumentRepositoryTests
     {
