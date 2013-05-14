@@ -41,6 +41,11 @@
         }
     };
 
+    self.clickBreadcrumb = function(item) {
+        self.list(item.Path);
+        self.getBreadcrumbs(item.Path);
+    };
+
 };
 
 $(function () {
@@ -50,14 +55,6 @@ $(function () {
 
     viewModel.list();
     viewModel.getBreadcrumbs('/');
-
-    $('#breaddcrumb').delegate('a', 'click', function(e) {
-        e.preventDefault();
-
-        var path = $(this).attr('data-path');
-        viewModel.list(path);
-        viewModel.getBreadcrumbs(path);
-    });
 
 });
 
