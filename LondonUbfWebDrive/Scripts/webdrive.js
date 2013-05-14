@@ -12,6 +12,7 @@
             self.documents(data);
         });
     };
+    
     self.get = function (path) {
         var hiddneIFrameId = 'hiddenDownloader',
             iframe = document.getElementById(hiddneIFrameId);
@@ -31,6 +32,15 @@
         });
     };
 
+    self.clickItem = function (item) {
+        if (!!item.IsFolder) {
+            self.list(item.FullName);
+            self.getBreadcrumbs(item.FullName);
+        } else {
+            self.get(item.FullName);
+        }
+    };
+
 };
 
 $(function () {
@@ -40,22 +50,6 @@ $(function () {
 
     viewModel.list();
     viewModel.getBreadcrumbs('/');
-
-    $('#fileList').delegate('a', 'click', function (e) {
-        e.preventDefault();
-
-        var path = $(this).attr('data-path');
-        console.log(path);
-
-        var isFolder = $(this).attr('data-isfolder');
-        if (!!isFolder) {
-            viewModel.list(path);
-            viewModel.getBreadcrumbs(path);
-        } else {
-            viewModel.get(path);
-        }
-            
-    });
 
     $('#breaddcrumb').delegate('a', 'click', function(e) {
         e.preventDefault();
