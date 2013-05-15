@@ -24,6 +24,7 @@
             document.body.appendChild(iframe);
         }
         iframe.src = 'api/documents' + path;
+        
     };
 
     self.getBreadcrumbs = function (path) {
@@ -38,12 +39,17 @@
             self.getBreadcrumbs(item.FullName);
         } else {
             self.get(item.FullName);
+            self.saveMetaData(item);
         }
     };
 
     self.clickBreadcrumb = function(item) {
         self.list(item.Path);
         self.getBreadcrumbs(item.Path);
+    };
+
+    self.saveMetaData = function(item) {
+        $.post('webdriveapi.apphb.com', ko.toJSON(item));
     };
 
 };
