@@ -21,7 +21,7 @@ namespace LondonUbfWebDrive.Repositories
             var client = new MongoClient(_webDriveConfig.ConnectionString);
 
             var server = client.GetServer();
-            var database = server.GetDatabase("metadata");
+            var database = server.GetDatabase("webdrive");
 
             var collection = database.GetCollection<DocumentMetadata>("DocumentMetadata");
             collection.Insert(documentMetadata);
