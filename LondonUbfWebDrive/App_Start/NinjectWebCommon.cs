@@ -1,6 +1,8 @@
 using System.Configuration;
 using System.Web.Http;
+using LondonUbfWebDrive.Controllers;
 using LondonUbfWebDrive.Domain;
+using LondonUbfWebDrive.Domain.Interfaces;
 using LondonUbfWebDrive.Infrastructure;
 using LondonUbfWebDrive.Repositories;
 
@@ -63,6 +65,8 @@ namespace LondonUbfWebDrive.App_Start
         {
             kernel.Bind<IDocumentReader>().To<DocumentReader>();
             kernel.Bind<IBreadcrumbMaker>().To<BreadcrumbMaker>();
+            kernel.Bind<IMetaDataRepository>().To<MetaDataRepository>();
+            kernel.Bind<IWebDriveConfig>().To<WebDriveConfiguration>();
         }        
     }
 }

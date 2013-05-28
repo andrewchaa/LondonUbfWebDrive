@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using LondonUbfWebDrive.Domain;
+using LondonUbfWebDrive.Domain.Interfaces;
 using LondonUbfWebDrive.Repositories;
 using Machine.Specifications;
 

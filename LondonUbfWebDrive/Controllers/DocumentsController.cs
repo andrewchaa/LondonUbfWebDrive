@@ -8,6 +8,7 @@ using System.Net.Http.Headers;
 using System.Web.Helpers;
 using System.Web.Http;
 using LondonUbfWebDrive.Domain;
+using LondonUbfWebDrive.Domain.Interfaces;
 using LondonUbfWebDrive.Repositories;
 
 namespace LondonUbfWebDrive.Controllers

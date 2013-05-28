@@ -30,6 +30,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="MongoDB.Bson">
+      <HintPath>..\packages\mongocsharpdriver.1.8.1\lib\net35\MongoDB.Bson.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -43,8 +46,10 @@
     <Compile Include="BreadcrumbMaker.cs" />
     <Compile Include="Document.cs" />
     <Compile Include="DocumentMap.cs" />
-    <Compile Include="IBreadcrumbMaker.cs" />
-    <Compile Include="IDocumentReader.cs" />
+    <Compile Include="DocumentMetadata.cs" />
+    <Compile Include="Interfaces\IBreadcrumbMaker.cs" />
+    <Compile Include="Interfaces\IDocumentReader.cs" />
+    <Compile Include="Interfaces\IMetaDataRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

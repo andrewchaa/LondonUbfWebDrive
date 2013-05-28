@@ -49,7 +49,7 @@
     };
 
     self.saveMetaData = function(item) {
-        //        $.post('webdriveapi.apphb.com', ko.toJSON(item));
+        $.post('api/metadata', "=" + ko.toJSON(item));
         console.log(ko.toJSON(item));
     };
 
