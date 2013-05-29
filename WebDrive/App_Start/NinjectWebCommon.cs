@@ -67,6 +67,7 @@ namespace LondonUbfWebDrive.App_Start
             kernel.Bind<IBreadcrumbMaker>().To<BreadcrumbMaker>();
             kernel.Bind<IMetaDataRepository>().To<MetaDataRepository>();
             kernel.Bind<IWebDriveConfig>().To<WebDriveConfiguration>();
+            kernel.Bind<IMongoDbHelper>().To<MongoDbHelper>().InSingletonScope();
         }        
     }
 }

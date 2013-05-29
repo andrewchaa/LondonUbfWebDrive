@@ -1,30 +1,30 @@
-﻿using LondonUbfWebDrive.Domain;
+﻿using System.Collections.Generic;
+using LondonUbfWebDrive.Domain;
 using LondonUbfWebDrive.Domain.Interfaces;
 using LondonUbfWebDrive.Infrastructure;
-using MongoDB.Bson;
-using MongoDB.Driver;
-using MongoDB.Driver.Builders;
+using MongoDB.Driver.Linq;
 
 namespace LondonUbfWebDrive.Repositories
 {
     public class MetaDataRepository : IMetaDataRepository
     {
-        private readonly IWebDriveConfig _webDriveConfig;
+        private readonly IMongoDbHelper _mongoDbHelper;
 
-        public MetaDataRepository(IWebDriveConfig webDriveConfig)
+        public MetaDataRepository(IMongoDbHelper mongoDbHelper)
         {
-            _webDriveConfig = webDriveConfig;
+            _mongoDbHelper = mongoDbHelper;
         }
 
         public void Save(DocumentMetadata documentMetadata)
         {
-            var client = new MongoClient(_webDriveConfig.ConnectionString);
-
-            var server = client.GetServer();
-            var database = server.GetDatabase("webdrive");
-
-            var collection = database.GetCollection<DocumentMetadata>("DocumentMetadata");
+            var collection = _mongoDbHelper.GetCollection<DocumentMetadata>();
             collection.Insert(documentMetadata);
+        }
+
+        public IEnumerable<DocumentMetadata> List()
+        {
+            var collection = _mongoDbHelper.GetCollection<DocumentMetadata>();
+            return collection.AsQueryable();
         }
     }
 }

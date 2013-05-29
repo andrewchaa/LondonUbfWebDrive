@@ -17,9 +17,11 @@ namespace LondonUbfWebDrive.Controllers
         }
 
         // GET api/metadata
-        public IEnumerable<string> Get()
+        public IEnumerable<DocumentMetadata> Get()
         {
-            return new string[] { "value1", "value2" };
+            var documentMetadatas = _metaDataRepository.List();
+            return documentMetadatas;
+//            return new string[] { "value1", "value2" };
         }
 
         // GET api/metadata/5

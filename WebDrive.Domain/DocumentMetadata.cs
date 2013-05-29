@@ -1,12 +1,18 @@
-﻿using MongoDB.Bson;
+﻿using System;
+using MongoDB.Bson;
+using MongoDB.Bson.Serialization.Attributes;
 
 namespace LondonUbfWebDrive.Domain
 {
     public class DocumentMetadata
     {
-        public ObjectId Id { get; set; }
+        [BsonId]
+        [BsonRepresentation(BsonType.ObjectId)]
+        public string Id { get; set; }
         public string Name { get; set; }
         public string FullName { get; set; }
-        public BsonDateTime DownloadTime { get; set; }
+
+        [BsonDateTimeOptions(Kind = DateTimeKind.Utc)]
+        public DateTime DownloadTime { get; set; }
     }
 }
