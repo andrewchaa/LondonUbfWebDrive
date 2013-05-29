@@ -1,11 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LondonUbfWebDrive", "LondonUbfWebDrive\LondonUbfWebDrive.csproj", "{2E10FD5B-26AB-48D1-98BC-C5BAF97B7C43}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebDrive", "WebDrive\WebDrive.csproj", "{2E10FD5B-26AB-48D1-98BC-C5BAF97B7C43}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LondonUbfWebDrive.Test", "LondonUbfWebDrive.Test\LondonUbfWebDrive.Test.csproj", "{F1059E98-A2A5-46D4-BFAC-76E76B306864}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebDrive.Test", "WebDrive.Test\WebDrive.Test.csproj", "{F1059E98-A2A5-46D4-BFAC-76E76B306864}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LondonUbfWebDrive.Domain", "LondonUbfWebDrive.Domain\LondonUbfWebDrive.Domain.csproj", "{0AA67104-0B92-4EB5-9CD5-BDF647609118}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebDrive.Domain", "WebDrive.Domain\WebDrive.Domain.csproj", "{0AA67104-0B92-4EB5-9CD5-BDF647609118}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

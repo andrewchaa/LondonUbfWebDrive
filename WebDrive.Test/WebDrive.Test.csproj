@@ -53,11 +53,11 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\LondonUbfWebDrive.Domain\LondonUbfWebDrive.Domain.csproj">
+    <ProjectReference Include="..\WebDrive.Domain\WebDrive.Domain.csproj">
       <Project>{0aa67104-0b92-4eb5-9cd5-bdf647609118}</Project>
       <Name>LondonUbfWebDrive.Domain</Name>
     </ProjectReference>
-    <ProjectReference Include="..\LondonUbfWebDrive\LondonUbfWebDrive.csproj">
+    <ProjectReference Include="..\WebDrive\WebDrive.csproj">
       <Project>{2e10fd5b-26ab-48d1-98bc-c5baf97b7c43}</Project>
       <Name>LondonUbfWebDrive</Name>
     </ProjectReference>
