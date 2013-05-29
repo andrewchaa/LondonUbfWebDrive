@@ -36,6 +36,8 @@ namespace LondonUbfWebDrive.Repositories
             return directory
                 .GetFiles()
                 .Where(f => !f.Name.StartsWith("~"))
+                .Where(f => f.Extension != ".ini" && f.Extension != ".lnk" && f.Extension != ".config" &&
+                    f.Extension != ".db" && f.Extension != ".exe")
                 .Select(file => new Document(
                                 file.Name,
                                 file.FullName.Replace(baseFolder, string.Empty),
