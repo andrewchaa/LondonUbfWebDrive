@@ -6,5 +6,7 @@ namespace LondonUbfWebDrive.Domain.Interfaces
     {
         void Save(DocumentMetadata documentMetadata);
         IEnumerable<DocumentMetadata> List();
+        IEnumerable<DocumentMetadata> ListPopular();
+        IEnumerable<DocumentMetadata> ListRecentDownloads();
     }
 }

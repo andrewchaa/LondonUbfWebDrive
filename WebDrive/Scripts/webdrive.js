@@ -2,6 +2,8 @@
     var self = this;
     self.breadcrumbs = ko.observableArray();
     self.documents = ko.observableArray();
+    self.recentDownloads = ko.observableArray();
+    
     self.list = function (path) {
         var uri = 'api/folders';
         if (!!path) {
@@ -30,6 +32,12 @@
     self.getBreadcrumbs = function (path) {
         $.get('api/breadcrumbs' + path, function(data) {
             self.breadcrumbs(data);
+        });
+    };
+
+    self.getPopularDownload = function() {
+        $.get('api/recentdownloads', function(data) {
+            self.recentDownloads(data);
         });
     };
 
@@ -62,6 +70,7 @@ $(function () {
 
     viewModel.list();
     viewModel.getBreadcrumbs('/');
+    viewModel.getPopularDownload();
 
 });
 
