@@ -22,12 +22,12 @@
         </table>
     </div>
     <div class="span3">
+        <p><span class="label label-success">Recent downloads</span></p>
         <table class="table table-bordered table-condensed">
-            <thead>
-                <tr><th>Recent downloads</th></tr>
-            </thead>
             <tbody data-bind="foreach: recentDownloads">
-                <tr><td><a href="#" data-bind="text: Name, click: $parent.clickItem"></a></td></tr>
+                <tr class="success">
+                    <td><a href="#" data-bind="text: Name, click: $parent.clickItem"></a></td>
+                </tr>
             </tbody>
         </table>
     </div>
