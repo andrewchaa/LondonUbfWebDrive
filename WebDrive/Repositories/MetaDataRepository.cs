@@ -35,7 +35,12 @@ namespace LondonUbfWebDrive.Repositories
         public IEnumerable<DocumentMetadata> ListRecentDownloads()
         {
             var collection = _mongoDbHelper.GetCollection<DocumentMetadata>();
-            return collection.AsQueryable().OrderByDescending(c => c.DownloadTime).Take(15);
+            return collection.AsQueryable()
+                             .OrderByDescending(c => c.DownloadTime)
+                             .Take(30).ToList()
+                             .GroupBy(c => c.FullName)
+                             .Select(c => c.First());
+;
         }
 
         public IEnumerable<DocumentMetadata> ListPopular()
