@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using LondonUbfWebDrive.Domain;
 using LondonUbfWebDrive.Domain.Interfaces;
@@ -34,6 +35,7 @@ namespace LondonUbfWebDrive.Repositories
 
         public IEnumerable<DocumentMetadata> ListRecentDownloads()
         {
+            throw new ExecutionEngineException();
             var collection = _mongoDbHelper.GetCollection<DocumentMetadata>();
             return collection.AsQueryable()
                              .OrderByDescending(c => c.DownloadTime)
