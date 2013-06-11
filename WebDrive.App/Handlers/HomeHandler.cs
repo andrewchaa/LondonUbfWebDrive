@@ -10,7 +10,7 @@ namespace WebDrive.App.Handlers
     {
         public object Get()
         {
-            return new Home {Title = "Welcome home."};
+            return new Home {Title = "Web drive"};
         }
     }
 }
