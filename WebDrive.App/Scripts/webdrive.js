@@ -5,7 +5,7 @@
     self.recentDownloads = ko.observableArray();
     
     self.list = function (path) {
-        var uri = 'api/folders';
+        var uri = 'folders';
         if (!!path) {
             uri += path;
         }
