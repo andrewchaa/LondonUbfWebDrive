@@ -2,28 +2,30 @@
 using System.Web.Http;
 using LondonUbfWebDrive.Domain;
 using LondonUbfWebDrive.Domain.Interfaces;
+using LondonUbfWebDrive.Domain.Model;
+using LondonUbfWebDrive.Domain.Services;
 
 namespace LondonUbfWebDrive.Controllers
 {
     public class BreadcrumbsController : ApiController
     {
-        private readonly IBreadcrumbMaker _breadcrumbMaker;
+        private readonly IBreadcrumbService _breadcrumbService;
 
-        public BreadcrumbsController(IBreadcrumbMaker breadcrumbMaker)
+        public BreadcrumbsController(IBreadcrumbService breadcrumbService)
         {
-            _breadcrumbMaker = breadcrumbMaker;
+            _breadcrumbService = breadcrumbService;
         }
 
-        // GET api/breadcrumbs/5
+        // GET api/breadcrumbs
         public IEnumerable<Breadcrumb> Get()
         {
-            return _breadcrumbMaker.Make(string.Empty);
+            return _breadcrumbService.ConvertFrom(string.Empty);
         }
 
         // GET api/breadcrumbs/5
         public IEnumerable<Breadcrumb> Get(string path)
         {
-            return _breadcrumbMaker.Make(path);
+            return _breadcrumbService.ConvertFrom(path);
         }
 
     }

@@ -2,6 +2,7 @@
 using System.Web.Http;
 using LondonUbfWebDrive.Domain;
 using LondonUbfWebDrive.Domain.Interfaces;
+using LondonUbfWebDrive.Domain.Model;
 
 namespace LondonUbfWebDrive.Controllers
 {

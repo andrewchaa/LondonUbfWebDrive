@@ -42,15 +42,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Breadcrumb.cs" />
-    <Compile Include="BreadcrumbMaker.cs" />
-    <Compile Include="Document.cs" />
-    <Compile Include="DocumentMap.cs" />
-    <Compile Include="DocumentMetadata.cs" />
-    <Compile Include="Interfaces\IBreadcrumbMaker.cs" />
-    <Compile Include="Interfaces\IDocumentReader.cs" />
+    <Compile Include="Model\Breadcrumb.cs" />
+    <Compile Include="Services\BreadcrumbService.cs" />
+    <Compile Include="Model\Document.cs" />
+    <Compile Include="Model\DocumentMap.cs" />
+    <Compile Include="Model\DocumentMetadata.cs" />
+    <Compile Include="Services\IBreadcrumbService.cs" />
+    <Compile Include="Services\IReadDocumentService.cs" />
     <Compile Include="Interfaces\IMetaDataRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\ReadDocumentService.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

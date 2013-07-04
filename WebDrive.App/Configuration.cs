@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using LondonUbfWebDrive.Domain;
+using LondonUbfWebDrive.Domain.Model;
 using OpenRasta.Configuration;
 using WebDrive.App.Handlers;
 using WebDrive.App.Resources;

@@ -3,6 +3,7 @@ using System.Web.Http;
 using LondonUbfWebDrive.Controllers;
 using LondonUbfWebDrive.Domain;
 using LondonUbfWebDrive.Domain.Interfaces;
+using LondonUbfWebDrive.Domain.Services;
 using LondonUbfWebDrive.Infrastructure;
 using LondonUbfWebDrive.Repositories;
 
@@ -63,8 +64,8 @@ namespace LondonUbfWebDrive.App_Start
         /// <param name="kernel">The kernel.</param>
         private static void RegisterServices(IKernel kernel)
         {
-            kernel.Bind<IDocumentReader>().To<DocumentReader>();
-            kernel.Bind<IBreadcrumbMaker>().To<BreadcrumbMaker>();
+            kernel.Bind<IReadDocumentService>().To<ReadDocumentService>();
+            kernel.Bind<IBreadcrumbService>().To<BreadcrumbService>();
             kernel.Bind<IMetaDataRepository>().To<MetaDataRepository>();
             kernel.Bind<IWebDriveConfig>().To<WebDriveConfiguration>();
             kernel.Bind<IMongoDbHelper>().To<MongoDbHelper>().InSingletonScope();

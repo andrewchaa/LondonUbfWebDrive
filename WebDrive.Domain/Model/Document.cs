@@ -1,4 +1,6 @@
-﻿namespace LondonUbfWebDrive.Domain
+﻿using System.IO;
+
+namespace LondonUbfWebDrive.Domain.Model
 {
     public class Document
     {
@@ -7,7 +9,7 @@
         public bool IsFolder { get; private set; }
         public string DateModified { get; private set; }
         public string ImagePath { get; private set; }
-        public byte[] ContentBytes { get; private set; }
+        public byte[] Content { get; private set; }
         public string FileType
         {
             get 
@@ -23,6 +25,17 @@
             DateModified = dateModified;
             IsFolder = isFolder;
             ImagePath = imagePath;
+        }
+
+        public Document(string fullName, byte[] content)
+        {
+            FullName = fullName;
+            Content = content;
+        }
+
+        public MemoryStream ToMemoryStream()
+        {
+            return new MemoryStream(Content);
         }
     }
 

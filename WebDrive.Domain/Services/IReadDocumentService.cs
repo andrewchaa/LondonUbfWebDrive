@@ -1,12 +1,13 @@
 ﻿using System.Collections.Generic;
+using LondonUbfWebDrive.Domain.Model;
 
-namespace LondonUbfWebDrive.Domain.Interfaces
+namespace LondonUbfWebDrive.Domain.Services
 {
-    public interface IDocumentReader
+    public interface IReadDocumentService
     {
         IEnumerable<Document> List(string baseFolder, string path);
         IEnumerable<Document> List(string baseFolder);
-        byte[] Get(string baseFolder, string path);
+        Document Get(string fullname);
     }
 
 }

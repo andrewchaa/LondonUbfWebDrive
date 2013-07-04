@@ -1,12 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using LondonUbfWebDrive.Domain;
 using LondonUbfWebDrive.Domain.Interfaces;
+using LondonUbfWebDrive.Domain.Model;
 
-namespace LondonUbfWebDrive.Repositories
+namespace LondonUbfWebDrive.Domain.Services
 {
-    public class DocumentReader : IDocumentReader
+    public class ReadDocumentService : IReadDocumentService
     {
         public IEnumerable<Document> List(string baseFolder, string path)
         {
@@ -24,9 +24,11 @@ namespace LondonUbfWebDrive.Repositories
             return List(baseFolder, string.Empty);
         }
 
-        public byte[] Get(string baseFolder, string path)
+        public Document Get(string fullname)
         {
-            return File.ReadAllBytes(Path.Combine(baseFolder, path));
+            var content = File.ReadAllBytes(fullname);
+
+            return new Document(fullname, content);
         }
 
         private IEnumerable<Document> GetFiles(string baseFolder, DirectoryInfo directory)

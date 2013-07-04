@@ -3,24 +3,26 @@ using System.Configuration;
 using System.Web.Http;
 using LondonUbfWebDrive.Domain;
 using LondonUbfWebDrive.Domain.Interfaces;
+using LondonUbfWebDrive.Domain.Model;
+using LondonUbfWebDrive.Domain.Services;
 
 namespace LondonUbfWebDrive.Controllers
 {
     public class FoldersController : ApiController
     {
-        private readonly IDocumentReader _reader;
+        private readonly IReadDocumentService _service;
         private readonly string _baseFolder;
 
-        public FoldersController(IDocumentReader reader)
+        public FoldersController(IReadDocumentService service)
         {
-            _reader = reader;
+            _service = service;
             _baseFolder = ConfigurationManager.AppSettings["BaseFolder"];
         }
 
         // GET api/folders
         public IEnumerable<Document> Get()
         {
-            var documents = _reader.List(_baseFolder);
+            var documents = _service.List(_baseFolder);
 
             return documents;
         }
@@ -28,7 +30,7 @@ namespace LondonUbfWebDrive.Controllers
         // GET api/folders/applications
         public IEnumerable<Document> Get(string path)
         {
-            var documents = _reader.List(_baseFolder, path);
+            var documents = _service.List(_baseFolder, path);
 
             return documents;
         }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using LondonUbfWebDrive.Domain;
 using LondonUbfWebDrive.Domain.Interfaces;
+using LondonUbfWebDrive.Domain.Model;
 using LondonUbfWebDrive.Infrastructure;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization;

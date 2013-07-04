@@ -5,6 +5,8 @@ using System.Linq;
 using System.Text;
 using LondonUbfWebDrive.Domain;
 using LondonUbfWebDrive.Domain.Interfaces;
+using LondonUbfWebDrive.Domain.Model;
+using LondonUbfWebDrive.Domain.Services;
 using LondonUbfWebDrive.Repositories;
 using Machine.Specifications;
 
@@ -15,11 +17,11 @@ namespace LondonUbfWebDrive.Test.Integrations
         protected static DirectoryInfo Folder;
         protected static IEnumerable<Document> Documents;
         protected static Document Document;
-        protected static IDocumentReader Reader;
+        protected static IReadDocumentService Service;
         protected static string BaseFolder;
         protected static string CurrentPath;
-        protected static byte[] DocumentBytes;
-        protected static string FilePath;
+        protected static Document _document;
+        protected static string _filePath;
 
         Establish context = () =>
             {
@@ -32,10 +34,10 @@ namespace LondonUbfWebDrive.Test.Integrations
     [Subject(typeof(Document))]
     public class When_it_reads_directories_in_the_given_directory : DocumentReaderTests
     {
-        Establish context = () => Reader = new DocumentReader(); 
+        Establish context = () => Service = new ReadDocumentService(); 
         Because it_reads_the_directory = () =>
             {
-                Documents = Reader.List(BaseFolder, CurrentPath);
+                Documents = Service.List(BaseFolder, CurrentPath);
             };
 
         It should_have_the_non_empty_file_list = () => Documents.ShouldNotBeEmpty();
@@ -44,8 +46,8 @@ namespace LondonUbfWebDrive.Test.Integrations
     [Subject(typeof(Document))]
     public class When_it_reads_files_in_the_given_directory : DocumentReaderTests
     {
-        Establish context = () => Reader = new DocumentReader();
-        Because It_reads_the_files = () => Documents = Reader.List(BaseFolder, CurrentPath);
+        Establish context = () => Service = new ReadDocumentService();
+        Because It_reads_the_files = () => Documents = Service.List(BaseFolder, CurrentPath);
 
         It should_have_the_list_of_files = () => Documents.Where(d => !d.IsFolder).ShouldNotBeEmpty();
     }
@@ -57,12 +59,12 @@ namespace LondonUbfWebDrive.Test.Integrations
 
         Establish context = () =>
             {
-                Reader = new DocumentReader();
+                Service = new ReadDocumentService();
                 _tempFileName = "~temp.docx";
                 File.WriteAllText(Path.Combine(BaseFolder, _tempFileName), "Temp file");
             };
         
-        Because of = () => Documents = Reader.List(BaseFolder, CurrentPath);
+        Because of = () => Documents = Service.List(BaseFolder, CurrentPath);
 
         It should_filter_out_temp_files = () => Documents.Any(d => d.Name == _tempFileName).ShouldBeFalse();
     }
@@ -70,8 +72,8 @@ namespace LondonUbfWebDrive.Test.Integrations
     [Subject(typeof(Document))]
     public class When_it_reads_a_document : DocumentReaderTests
     {
-        Establish context = () => Reader = new DocumentReader();
-        Because It_reads_file_as_document = () => Document = Reader.List(BaseFolder, CurrentPath).Skip(1).First();
+        Establish context = () => Service = new ReadDocumentService();
+        Because It_reads_file_as_document = () => Document = Service.List(BaseFolder, CurrentPath).Skip(1).First();
 
         It should_have_document_name = () => Document.Name.ShouldNotBeEmpty();
         It should_have_document_full_name = () => Document.FullName.ShouldNotBeEmpty();
@@ -83,14 +85,14 @@ namespace LondonUbfWebDrive.Test.Integrations
     {
         Establish context = () =>
             {
-                FilePath = Path.Combine(BaseFolder, "test.txt");
-                File.WriteAllText(FilePath, "Hello world!");
-                Reader = new DocumentReader();
+                _filePath = Path.Combine(BaseFolder, "test.txt");
+                File.WriteAllText(_filePath, "Hello world!");
+                Service = new ReadDocumentService();
             };
 
-        Because It_reads_a_file_from_file_system = () => DocumentBytes = Reader.Get(BaseFolder, FilePath);
+        Because of = () => _document = Service.Get(_filePath);
 
-        It should_have_the_document_in_bytes_array = () => DocumentBytes.ShouldNotBeEmpty();
+        It should_have_the_content_of_the_document = () => _document.Content.ShouldNotBeEmpty();
     }
 
 }

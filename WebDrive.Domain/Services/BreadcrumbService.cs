@@ -1,20 +1,19 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
-using LondonUbfWebDrive.Domain.Interfaces;
+using LondonUbfWebDrive.Domain.Model;
 
-namespace LondonUbfWebDrive.Domain
+namespace LondonUbfWebDrive.Domain.Services
 {
-    public class BreadcrumbMaker : IBreadcrumbMaker
+    public class BreadcrumbService : IBreadcrumbService
     {
-        public IEnumerable<Breadcrumb> Make(string path)
+        public IEnumerable<Breadcrumb> ConvertFrom(string path)
         {
-            var breadcrumbs = new List<Breadcrumb>();
-            breadcrumbs.Add(new Breadcrumb("Home", string.Empty));
+            var breadcrumbs = new List<Breadcrumb> {new Breadcrumb("Home", string.Empty)};
 
             if (string.IsNullOrEmpty(path))
                 return breadcrumbs;
 
             var folderNames = path.Split('/');
+            
             string folderPath = string.Empty;
             foreach (var name in folderNames)
             {

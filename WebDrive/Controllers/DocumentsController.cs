@@ -1,33 +1,31 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Configuration;
 using System.IO;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
-using System.Web.Helpers;
 using System.Web.Http;
-using LondonUbfWebDrive.Domain;
 using LondonUbfWebDrive.Domain.Interfaces;
-using LondonUbfWebDrive.Repositories;
+using LondonUbfWebDrive.Domain.Model;
+using LondonUbfWebDrive.Domain.Services;
 
 namespace LondonUbfWebDrive.Controllers
 {
     public class DocumentsController : ApiController
     {
-        private readonly IDocumentReader _reader;
+        private readonly IReadDocumentService _service;
         private readonly string _baseFolder;
 
-        public DocumentsController(IDocumentReader reader)
+        public DocumentsController(IReadDocumentService service)
         {
-            _reader = reader;
+            _service = service;
             _baseFolder = ConfigurationManager.AppSettings["BaseFolder"];
         }
 
         // GET api/documents
         public IEnumerable<Document> Get()
         {
-            var documents = _reader.List(_baseFolder);
+            var documents = _service.List(_baseFolder);
 
             return documents;
         }
@@ -35,16 +33,21 @@ namespace LondonUbfWebDrive.Controllers
         // GET api/documents/text.txt
         public HttpResponseMessage Get(string path)
         {
-            var documentBytes = _reader.Get(_baseFolder,  path);
+            string fullname = Path.Combine(_baseFolder, path);
+            var document = _service.Get(fullname);
+            var response = GetDownloadResponseFrom(path, document);
 
-            var stream = new MemoryStream(documentBytes);
+            return response;
+        }
+
+        private static HttpResponseMessage GetDownloadResponseFrom(string path, Document document)
+        {
             var response = new HttpResponseMessage(HttpStatusCode.OK);
             response.StatusCode = HttpStatusCode.OK;
-            response.Content = new StreamContent(stream);
+            response.Content = new StreamContent(document.ToMemoryStream());
             response.Content.Headers.ContentType = new MediaTypeHeaderValue("application/octet-stream");
             response.Content.Headers.ContentDisposition = new ContentDispositionHeaderValue("attachment");
             response.Content.Headers.ContentDisposition.FileName = Path.GetFileName(path);
-
             return response;
         }
 
