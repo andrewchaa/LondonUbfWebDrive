@@ -220,6 +220,8 @@
     <Content Include="Content\themes\font-awesome\less\path.less" />
     <Content Include="Content\themes\font-awesome\less\variables.less" />
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
+    <Content Include="Images\cloud.ico" />
+    <Content Include="Images\cloud.png" />
     <Content Include="Images\diskdrive.png" />
     <Content Include="Images\document.png" />
     <Content Include="Images\excel.png" />

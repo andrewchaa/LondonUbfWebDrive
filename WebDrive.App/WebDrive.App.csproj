@@ -81,6 +81,7 @@
     <Content Include="Content\images\glyphicons-halflings.png" />
     <Content Include="Images\accent.png" />
     <Content Include="Images\bullet.png" />
+    <Content Include="Images\cloud.png" />
     <Content Include="Images\diskdrive.png" />
     <Content Include="Images\document.png" />
     <Content Include="Images\excel.png" />
