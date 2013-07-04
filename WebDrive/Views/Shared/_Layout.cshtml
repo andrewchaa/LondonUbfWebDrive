@@ -27,7 +27,7 @@
 		<!--ace styles-->
         <link href="~/Content/themes/css/w8.min.css" rel="stylesheet" />
         <link href="~/Content/themes/css/w8-responsive.min.css" rel="stylesheet" />
-        <link href="~/Content/themes/css/w8-skins.css" rel="stylesheet" />
+        <link href="~/Content/themes/css/w8-skins.min.css" rel="stylesheet" />
 
 
 		<!--inline styles if any-->
@@ -79,36 +79,39 @@
 		</div>
 
 		<div id="main-content" class="clearfix">
-			<div id="breadcrumbs">
-				<ul class="breadcrumb">
-					<li>
-						<i class="icon-home"></i>
-						<a href="#">Home</a>
+		    @RenderBody()
 
-						<span class="divider">
-							<i class="icon-angle-right"></i>
-						</span>
-					</li>
-					<li class="active">Typography</li>
-				</ul><!--.breadcrumb-->
-
-			</div>
-
-			<div id="page-content" class="clearfix">
-				<div class="page-header position-relative">
-				    <h1>Web drive <small><i class="icon-double-angle-right"></i> Browse and download all your files</small></h1>
-				</div><!--/.page-header-->
-
-				<div class="row-fluid">
-					<!--PAGE CONTENT BEGINS HERE-->
-                    
-                    @RenderBody()
-
-					<!--PAGE CONTENT ENDS HERE-->
-				</div><!--/row-->
-			</div><!--/#page-content-->
+@*		    <div id="breadcrumbs">*@
+@*		        <ul class="breadcrumb">*@
+@*		            <li>*@
+@*		                <i class="icon-home"></i>*@
+@*		                <a href="#">Home</a>*@
+@**@
+@*		                <span class="divider">*@
+@*		                    <i class="icon-angle-right"></i>*@
+@*		                </span>*@
+@*		            </li>*@
+@*		            <li class="active">Typography</li>*@
+@*		        </ul><!--.breadcrumb-->*@
+@**@
+@*		    </div>*@
+@**@
+@*		    <div id="page-content" class="clearfix">*@
+@*		        <div class="page-header position-relative">*@
+@*		            <h1>Web drive <small><i class="icon-double-angle-right"></i> Browse and download all your files</small></h1>*@
+@*		        </div><!--/.page-header-->*@
+@**@
+@*		        <div class="row-fluid">*@
+@*		            <!--PAGE CONTENT BEGINS HERE-->*@
+@*                    *@
+@*		            @RenderBody()*@
+@**@
+@*		            <!--PAGE CONTENT ENDS HERE-->*@
+@*		        </div><!--/row-->*@
+@*		    </div><!--/#page-content-->*@
 
 		</div><!--/#main-content-->
+
 	</div><!--/.fluid-container#main-container-->
 
 	<!--basic scripts-->
@@ -123,21 +126,6 @@
     <script src="~/Content/themes/js/w8.min.js"></script>
 
 	<!--inline scripts related to this page-->
-
-
-    
-@*    <div class="navbar navbar-inverse navbar-fixed-top">*@
-@*        <div class="navbar-inner">*@
-@*            <div class="container">*@
-@*                <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">*@
-@*                    <span class="icon-bar"></span>*@
-@*                    <span class="icon-bar"></span>*@
-@*                    <span class="icon-bar"></span>*@
-@*                </button>*@
-@*                <a class="brand" href="/">Web drive <span class="label label-success">Beta</span></a>*@
-@*            </div>*@
-@*        </div>*@
-@*    </div>*@
 
 
     @RenderSection("scripts", required: false)

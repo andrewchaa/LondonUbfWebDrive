@@ -8,8 +8,6 @@ namespace LondonUbfWebDrive.Repositories
 {
     public class DocumentReader : IDocumentReader
     {
-        private readonly string _baseFolder;
-
         public IEnumerable<Document> List(string baseFolder, string path)
         {
             var directory = new DirectoryInfo(Path.Combine(baseFolder, path));

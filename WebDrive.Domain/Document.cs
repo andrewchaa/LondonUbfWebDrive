@@ -8,6 +8,13 @@
         public string DateModified { get; private set; }
         public string ImagePath { get; private set; }
         public byte[] ContentBytes { get; private set; }
+        public string FileType
+        {
+            get 
+            {
+                return IsFolder ? "icon-folder-close orange" : "icon-file blue";
+            }
+        }
 
         public Document(string name, string fullName, string dateModified, bool isFolder, string imagePath)
         {
