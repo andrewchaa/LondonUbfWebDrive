@@ -274,6 +274,10 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Admin.cshtml" />
+    <Content Include="Views\Home\_Breadcrumb.cshtml" />
+    <Content Include="Views\Home\_Drive.cshtml" />
+    <Content Include="Views\Home\_RecentDownloads.cshtml" />
+    <Content Include="Views\Home\_Suggestions.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
