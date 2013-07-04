@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using LondonUbfWebDrive.Domain.Interfaces;
 using LondonUbfWebDrive.Domain.Model;
 
 namespace LondonUbfWebDrive.Domain.Services
@@ -39,7 +38,6 @@ namespace LondonUbfWebDrive.Domain.Services
                 .Where(f => f.Extension != ".ini" && f.Extension != ".lnk" && f.Extension != ".config" &&
                     f.Extension != ".db" && f.Extension != ".exe")
                 .Select(file => new Document(
-                                file.Name,
                                 file.FullName.Replace(baseFolder, string.Empty),
                                 file.LastWriteTimeUtc.ToShortDateString(),
                                 false,
@@ -82,7 +80,6 @@ namespace LondonUbfWebDrive.Domain.Services
         {
             return directory.GetDirectories()
                             .Select(d => new Document(
-                                             d.Name, 
                                              d.FullName.Replace(baseFolder, string.Empty),
                                              d.LastWriteTime.ToString(),
                                              true,
