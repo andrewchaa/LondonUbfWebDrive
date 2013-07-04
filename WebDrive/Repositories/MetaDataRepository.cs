@@ -35,7 +35,6 @@ namespace LondonUbfWebDrive.Repositories
 
         public IEnumerable<DocumentMetadata> ListRecentDownloads()
         {
-            throw new ExecutionEngineException();
             var collection = _mongoDbHelper.GetCollection<DocumentMetadata>();
             return collection.AsQueryable()
                              .OrderByDescending(c => c.DownloadTime)
