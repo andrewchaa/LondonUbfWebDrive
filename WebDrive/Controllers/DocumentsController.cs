@@ -5,7 +5,6 @@ using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Web.Http;
-using LondonUbfWebDrive.Domain.Interfaces;
 using LondonUbfWebDrive.Domain.Model;
 using LondonUbfWebDrive.Domain.Services;
 
@@ -35,19 +34,19 @@ namespace LondonUbfWebDrive.Controllers
         {
             string fullname = Path.Combine(_baseFolder, path);
             var document = _service.Get(fullname);
-            var response = GetDownloadResponseFrom(path, document);
+            var response = GetDownloadResponseFrom(document);
 
             return response;
         }
 
-        private static HttpResponseMessage GetDownloadResponseFrom(string path, Document document)
+        private static HttpResponseMessage GetDownloadResponseFrom(Document document)
         {
             var response = new HttpResponseMessage(HttpStatusCode.OK);
             response.StatusCode = HttpStatusCode.OK;
             response.Content = new StreamContent(document.ToMemoryStream());
             response.Content.Headers.ContentType = new MediaTypeHeaderValue("application/octet-stream");
             response.Content.Headers.ContentDisposition = new ContentDispositionHeaderValue("attachment");
-            response.Content.Headers.ContentDisposition.FileName = Path.GetFileName(path);
+            response.Content.Headers.ContentDisposition.FileName = document.Name;
             return response;
         }
 

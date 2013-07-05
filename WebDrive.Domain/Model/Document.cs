@@ -4,12 +4,16 @@ namespace LondonUbfWebDrive.Domain.Model
 {
     public class Document
     {
-        public string Name { get; private set; }
         public string FullName { get; private set; }
         public bool IsFolder { get; private set; }
         public string DateModified { get; private set; }
         public string ImagePath { get; private set; }
         public byte[] Content { get; private set; }
+        public string Name
+        {
+            get { return Path.GetFileName(FullName); }
+        }
+
         public string FileType
         {
             get 
@@ -18,9 +22,8 @@ namespace LondonUbfWebDrive.Domain.Model
             }
         }
 
-        public Document(string name, string fullName, string dateModified, bool isFolder, string imagePath)
+        public Document(string fullName, string dateModified, bool isFolder, string imagePath)
         {
-            Name = name;
             FullName = fullName;
             DateModified = dateModified;
             IsFolder = isFolder;

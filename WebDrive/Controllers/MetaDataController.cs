@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Web.Http;
-using LondonUbfWebDrive.Domain;
 using LondonUbfWebDrive.Domain.Interfaces;
 using LondonUbfWebDrive.Domain.Model;
+using LondonUbfWebDrive.Models;
 using Newtonsoft.Json;
 
 namespace LondonUbfWebDrive.Controllers
@@ -20,8 +20,7 @@ namespace LondonUbfWebDrive.Controllers
         // GET api/metadata
         public IEnumerable<DocumentMetadata> Get()
         {
-            var documentMetadatas = _metaDataRepository.List();
-            return documentMetadatas;
+            return _metaDataRepository.List();
         }
 
         // GET api/metadata/5
@@ -33,8 +32,14 @@ namespace LondonUbfWebDrive.Controllers
         // POST api/metadata
         public void Post([FromBody] string value)
         {
-            var document = JsonConvert.DeserializeObject<Document>(value);
-            var metadata = new DocumentMetadata {Name = document.Name, FullName = document.FullName, DownloadTime = DateTime.UtcNow };
+            var documentViewModel = JsonConvert.DeserializeObject<DocumentViewModel>(value);
+            var metadata = new DocumentMetadata
+                {
+                    Name = documentViewModel.Name, 
+                    FullName = documentViewModel.FullName, 
+                    DownloadTime = DateTime.UtcNow
+                };
+
             _metaDataRepository.Save(metadata);
         }
 
