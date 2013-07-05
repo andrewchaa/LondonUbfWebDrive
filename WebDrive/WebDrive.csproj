@@ -238,6 +238,7 @@
     <Content Include="Scripts\jquery-1.9.1.min.js" />
     <Content Include="Scripts\jquery-1.9.1.min.map" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.filedrop.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
@@ -279,6 +280,7 @@
     <Content Include="Views\Home\_Drive.cshtml" />
     <Content Include="Views\Home\_RecentDownloads.cshtml" />
     <Content Include="Views\Home\_Suggestions.cshtml" />
+    <Content Include="Views\Shared\_SidebarMenu.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

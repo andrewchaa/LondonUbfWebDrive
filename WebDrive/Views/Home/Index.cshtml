@@ -14,7 +14,12 @@
 	            
 	            <div class="widget-box">
 	                
-	                <div class="widget-header widget-header-flat" id="breadcrumbs">@Html.Partial("_Breadcrumb")</div>
+	                <div class="widget-header widget-header-flat" id="breadcrumbs">
+	                    @Html.Partial("_Breadcrumb")
+	                    <div class="widget-toolbar">
+	                        <button class="btn btn-primary btn-small">Upload</button>
+	                    </div>
+	                </div>
 	                <div class="widget-body"><div class="widget-main">@Html.Partial("_Drive")</div></div>
 	            
 	            </div><!-- /widget-box -->
