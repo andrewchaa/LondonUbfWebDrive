@@ -1,10 +1,13 @@
 ﻿using System.Collections.Generic;
 using System.Configuration;
 using System.IO;
+using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Threading.Tasks;
 using System.Web.Http;
+using System.Web.Mvc;
 using LondonUbfWebDrive.Domain.Model;
 using LondonUbfWebDrive.Domain.Services;
 
@@ -39,6 +42,32 @@ namespace LondonUbfWebDrive.Controllers
             return response;
         }
 
+        // POST api/document
+        public async Task<FileResult> Post()
+        {
+            MultipartFormDataStreamProvider streamProvider = new MultipartFormDataStreamProvider("C:\\temp");
+
+            await Request.Content.ReadAsMultipartAsync(streamProvider);
+
+            return new FileResult
+            {
+                FileNames = streamProvider.FileData.Select(entry => entry.LocalFileName),
+                Submitter = streamProvider.FormData["submitter"]
+            };
+        }
+
+        // PUT api/document/5
+
+        public void Put(int id, [FromBody]string value)
+        {
+        }
+
+        // DELETE api/document/5
+
+        public void Delete(int id)
+        {
+        }
+
         private static HttpResponseMessage GetDownloadResponseFrom(Document document)
         {
             var response = new HttpResponseMessage(HttpStatusCode.OK);
@@ -49,20 +78,25 @@ namespace LondonUbfWebDrive.Controllers
             response.Content.Headers.ContentDisposition.FileName = document.Name;
             return response;
         }
-
-        // POST api/document
-        public void Post([FromBody]string value)
-        {
-        }
-
-        // PUT api/document/5
-        public void Put(int id, [FromBody]string value)
-        {
-        }
-
-        // DELETE api/document/5
-        public void Delete(int id)
-        {
-        }
     }
+
+    public class FileResult
+    {
+        /// <summary>
+        /// Gets or sets the local path of the file saved on the server.
+        /// </summary>
+        /// <value>
+        /// The local path.
+        /// </value>
+        public IEnumerable<string> FileNames { get; set; }
+
+        /// <summary>
+        /// Gets or sets the submitter as indicated in the HTML form used to upload the data.
+        /// </summary>
+        /// <value>
+        /// The submitter.
+        /// </value>
+        public string Submitter { get; set; }
+    }
+
 }
