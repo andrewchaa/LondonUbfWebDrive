@@ -5,7 +5,9 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 using System.Web.Http;
 using System.Web.Mvc;
 using LondonUbfWebDrive.Domain.Model;
@@ -43,17 +45,48 @@ namespace LondonUbfWebDrive.Controllers
         }
 
         // POST api/document
-        public async Task<FileResult> Post()
+        public async Task<HttpResponseMessage> Post()
         {
-            MultipartFormDataStreamProvider streamProvider = new MultipartFormDataStreamProvider("C:\\temp");
-
-            await Request.Content.ReadAsMultipartAsync(streamProvider);
-
-            return new FileResult
+            // Check if the request contains multipart/form-data.
+            if (!Request.Content.IsMimeMultipartContent())
             {
-                FileNames = streamProvider.FileData.Select(entry => entry.LocalFileName),
-                Submitter = streamProvider.FormData["submitter"]
-            };
+                throw new HttpResponseException(HttpStatusCode.UnsupportedMediaType);
+            }
+
+            string root = HttpContext.Current.Server.MapPath("~/App_Data");
+            var provider = new MultipartFormDataStreamProvider(root);
+
+            try
+            {
+                StringBuilder sb = new StringBuilder(); // Holds the response body
+
+                // Read the form data and return an async task.
+                await Request.Content.ReadAsMultipartAsync(provider);
+
+                // This illustrates how to get the form data.
+                foreach (var key in provider.FormData.AllKeys)
+                {
+                    foreach (var val in provider.FormData.GetValues(key))
+                    {
+                        sb.Append(string.Format("{0}: {1}\n", key, val));
+                    }
+                }
+
+                // This illustrates how to get the file names for uploaded files.
+                foreach (var file in provider.FileData)
+                {
+                    FileInfo fileInfo = new FileInfo(file.LocalFileName);
+                    sb.Append(string.Format("Uploaded file: {0} ({1} bytes)\n", fileInfo.Name, fileInfo.Length));
+                }
+                return new HttpResponseMessage()
+                {
+                    Content = new StringContent(sb.ToString())
+                };
+            }
+            catch (System.Exception e)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, e);
+            }
         }
 
         // PUT api/document/5
@@ -78,25 +111,6 @@ namespace LondonUbfWebDrive.Controllers
             response.Content.Headers.ContentDisposition.FileName = document.Name;
             return response;
         }
-    }
-
-    public class FileResult
-    {
-        /// <summary>
-        /// Gets or sets the local path of the file saved on the server.
-        /// </summary>
-        /// <value>
-        /// The local path.
-        /// </value>
-        public IEnumerable<string> FileNames { get; set; }
-
-        /// <summary>
-        /// Gets or sets the submitter as indicated in the HTML form used to upload the data.
-        /// </summary>
-        /// <value>
-        /// The submitter.
-        /// </value>
-        public string Submitter { get; set; }
     }
 
 }
