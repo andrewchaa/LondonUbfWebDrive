@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Configuration;
 using System.IO;
-using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
@@ -9,7 +8,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
-using System.Web.Mvc;
 using LondonUbfWebDrive.Domain.Model;
 using LondonUbfWebDrive.Domain.Services;
 
@@ -47,35 +45,24 @@ namespace LondonUbfWebDrive.Controllers
         // POST api/document
         public async Task<HttpResponseMessage> Post()
         {
-            // Check if the request contains multipart/form-data.
-            if (!Request.Content.IsMimeMultipartContent())
-            {
-                throw new HttpResponseException(HttpStatusCode.UnsupportedMediaType);
-            }
 
             string root = HttpContext.Current.Server.MapPath("~/App_Data");
             var provider = new MultipartFormDataStreamProvider(root);
 
             try
             {
-                StringBuilder sb = new StringBuilder(); // Holds the response body
+                var sb = new StringBuilder(); // Holds the response body
 
                 // Read the form data and return an async task.
                 await Request.Content.ReadAsMultipartAsync(provider);
 
-                // This illustrates how to get the form data.
-                foreach (var key in provider.FormData.AllKeys)
-                {
-                    foreach (var val in provider.FormData.GetValues(key))
-                    {
-                        sb.Append(string.Format("{0}: {1}\n", key, val));
-                    }
-                }
+                var selectedDir = provider.FormData["currentDir"];
+                sb.AppendLine("current Dir: " + selectedDir);
 
                 // This illustrates how to get the file names for uploaded files.
-                foreach (MultipartFileData file in provider.FileData)
+                foreach (var file in provider.FileData)
                 {
-                    FileInfo fileInfo = new FileInfo(file.LocalFileName);
+                    var fileInfo = new FileInfo(file.LocalFileName);
                     sb.Append(string.Format("Uploaded file: {0} ({1} bytes)\n", fileInfo.Name, fileInfo.Length));
                 }
                 return new HttpResponseMessage()

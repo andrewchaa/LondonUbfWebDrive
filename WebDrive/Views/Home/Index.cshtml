@@ -61,12 +61,13 @@
 
         dropbox.filedrop({
             // The name of the $_FILES entry:
-            paramname: 'pic',
-
+            paramname: 'uploadFiles',
             maxfiles: 5,
             maxfilesize: 2, // in mb
             url: '/api/documents',
-
+            data: {
+              currentDir: 'the selected directory'  
+            },
             uploadFinished: function (i, file, response) {
                 $.data(file).addClass('done');
                 // response is the JSON object that post_file.php returns
