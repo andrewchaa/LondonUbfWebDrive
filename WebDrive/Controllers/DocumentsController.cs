@@ -73,7 +73,7 @@ namespace LondonUbfWebDrive.Controllers
                 }
 
                 // This illustrates how to get the file names for uploaded files.
-                foreach (var file in provider.FileData)
+                foreach (MultipartFileData file in provider.FileData)
                 {
                     FileInfo fileInfo = new FileInfo(file.LocalFileName);
                     sb.Append(string.Format("Uploaded file: {0} ({1} bytes)\n", fileInfo.Name, fileInfo.Length));
@@ -112,5 +112,6 @@ namespace LondonUbfWebDrive.Controllers
             return response;
         }
     }
+
 
 }
