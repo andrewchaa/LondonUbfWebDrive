@@ -3,9 +3,11 @@ using System.Web.Http;
 using LondonUbfWebDrive.Controllers;
 using LondonUbfWebDrive.Domain;
 using LondonUbfWebDrive.Domain.Interfaces;
+using LondonUbfWebDrive.Domain.Model;
 using LondonUbfWebDrive.Domain.Services;
 using LondonUbfWebDrive.Infrastructure;
 using LondonUbfWebDrive.Repositories;
+using LondonUbfWebDrive.Service;
 
 [assembly: WebActivator.PreApplicationStartMethod(typeof(LondonUbfWebDrive.App_Start.NinjectWebCommon), "Start")]
 [assembly: WebActivator.ApplicationShutdownMethodAttribute(typeof(LondonUbfWebDrive.App_Start.NinjectWebCommon), "Stop")]
@@ -67,8 +69,8 @@ namespace LondonUbfWebDrive.App_Start
             kernel.Bind<IReadDocumentService>().To<ReadDocumentService>();
             kernel.Bind<IBreadcrumbService>().To<BreadcrumbService>();
             kernel.Bind<IMetaDataRepository>().To<MetaDataRepository>();
-            kernel.Bind<IWebDriveConfig>().To<WebDriveConfiguration>();
             kernel.Bind<IMongoDbHelper>().To<MongoDbHelper>().InSingletonScope();
+            kernel.Bind<IConfigService>().To<ConfigService>();
         }        
     }
 }

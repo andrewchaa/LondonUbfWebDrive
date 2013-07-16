@@ -2,12 +2,8 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
-using LondonUbfWebDrive.Domain;
-using LondonUbfWebDrive.Domain.Interfaces;
 using LondonUbfWebDrive.Domain.Model;
 using LondonUbfWebDrive.Domain.Services;
-using LondonUbfWebDrive.Repositories;
 using Machine.Specifications;
 
 namespace LondonUbfWebDrive.Test.Integrations

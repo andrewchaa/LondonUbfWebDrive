@@ -1,11 +1,14 @@
 ﻿using System.Configuration;
+using LondonUbfWebDrive.Domain.Model;
 
-namespace LondonUbfWebDrive.Infrastructure
+namespace LondonUbfWebDrive.Service
 {
-    public class WebDriveConfiguration : IWebDriveConfig
+    public class ConfigService : IConfigService
     {
-        public string ConnectionString 
-        { 
+        public string BaseFolder { get { return ConfigurationManager.AppSettings["BaseFolder"]; } }
+
+        public string ConnectionString
+        {
             get
             {
                 string connectionString = ConfigurationManager.AppSettings["ConnectionString"];
@@ -17,5 +20,6 @@ namespace LondonUbfWebDrive.Infrastructure
                 return connectionString;
             }
         }
+
     }
 }

@@ -43,6 +43,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Model\Breadcrumb.cs" />
+    <Compile Include="Model\Upload.cs" />
+    <Compile Include="Services\IConfigService.cs" />
     <Compile Include="Services\BreadcrumbService.cs" />
     <Compile Include="Model\Document.cs" />
     <Compile Include="Model\DocumentMap.cs" />

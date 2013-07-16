@@ -1,13 +1,12 @@
 ﻿using System.Collections.Generic;
-using System.Configuration;
 using System.IO;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
-using System.Text;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
+using System.Web.Script.Serialization;
 using LondonUbfWebDrive.Domain.Model;
 using LondonUbfWebDrive.Domain.Services;
 
@@ -16,18 +15,18 @@ namespace LondonUbfWebDrive.Controllers
     public class DocumentsController : ApiController
     {
         private readonly IReadDocumentService _service;
-        private readonly string _baseFolder;
+        private readonly IConfigService _configService;
 
-        public DocumentsController(IReadDocumentService service)
+        public DocumentsController(IReadDocumentService service, IConfigService configService)
         {
             _service = service;
-            _baseFolder = ConfigurationManager.AppSettings["BaseFolder"];
+            _configService = configService;
         }
 
         // GET api/documents
         public IEnumerable<Document> Get()
         {
-            var documents = _service.List(_baseFolder);
+            var documents = _service.List(_configService.BaseFolder);
 
             return documents;
         }
@@ -35,7 +34,7 @@ namespace LondonUbfWebDrive.Controllers
         // GET api/documents/text.txt
         public HttpResponseMessage Get(string path)
         {
-            string fullname = Path.Combine(_baseFolder, path);
+            string fullname = Path.Combine(_configService.BaseFolder, path);
             var document = _service.Get(fullname);
             var response = GetDownloadResponseFrom(document);
 
@@ -45,30 +44,31 @@ namespace LondonUbfWebDrive.Controllers
         // POST api/document
         public async Task<HttpResponseMessage> Post()
         {
-
-            string root = HttpContext.Current.Server.MapPath("~/App_Data");
-            var provider = new MultipartFormDataStreamProvider(root);
+            string tempStorage = HttpContext.Current.Server.MapPath("~/App_Data");
+            var provider = new MultipartFormDataStreamProvider(tempStorage);
+            string selectedDir = provider.FormData["selectedDir"];
 
             try
             {
-                var sb = new StringBuilder(); // Holds the response body
-
-                // Read the form data and return an async task.
+                
                 await Request.Content.ReadAsMultipartAsync(provider);
 
-                var selectedDir = provider.FormData["currentDir"];
-                sb.AppendLine("current Dir: " + selectedDir);
+                var filenames = new List<string>();
 
-                // This illustrates how to get the file names for uploaded files.
                 foreach (var file in provider.FileData)
                 {
-                    var fileInfo = new FileInfo(file.LocalFileName);
-                    sb.Append(string.Format("Uploaded file: {0} ({1} bytes)\n", fileInfo.Name, fileInfo.Length));
+                    string filename = file.Headers.ContentDisposition.FileName.Replace("\"", string.Empty);
+                    string to = Path.Combine(_configService.BaseFolder + selectedDir, filename); 
+                    
+                    var upload = new Upload(file.LocalFileName, to);
+                    upload.Move();
+
+                    filenames.Add(filename);
                 }
-                return new HttpResponseMessage()
-                {
-                    Content = new StringContent(sb.ToString())
-                };
+
+                var jsonSerialiser = new JavaScriptSerializer();
+
+                return new HttpResponseMessage { Content = new StringContent(jsonSerialiser.Serialize(filenames)) };
             }
             catch (System.Exception e)
             {
@@ -77,13 +77,11 @@ namespace LondonUbfWebDrive.Controllers
         }
 
         // PUT api/document/5
-
         public void Put(int id, [FromBody]string value)
         {
         }
 
         // DELETE api/document/5
-
         public void Delete(int id)
         {
         }
@@ -99,6 +97,4 @@ namespace LondonUbfWebDrive.Controllers
             return response;
         }
     }
-
-
 }

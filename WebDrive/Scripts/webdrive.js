@@ -3,6 +3,11 @@
     self.breadcrumbs = ko.observableArray();
     self.documents = ko.observableArray();
     self.recentDownloads = ko.observableArray();
+    self.path = '';
+
+    self.getPath = function() {
+        return self.path || '';
+    };
     
     self.list = function (path) {
         var uri = 'api/folders';
@@ -13,6 +18,8 @@
         $.get(uri, function (data) {
             self.documents(data);
         });
+
+        self.path = path;
     };
     
     self.get = function (path) {
@@ -25,6 +32,7 @@
             iframe.style.display = 'none';
             document.body.appendChild(iframe);
         }
+        
         iframe.src = 'api/documents' + path;
         
     };
@@ -60,7 +68,7 @@
         $.post('api/metadata', "=" + ko.toJSON(item));
         console.log(ko.toJSON(item));
     };
-
+    
 };
 
 $(function () {
@@ -71,6 +79,68 @@ $(function () {
     viewModel.list();
     viewModel.getBreadcrumbs('/');
     viewModel.getPopularDownload();
+    
+    $('#btnUpload').click(function () {
+        $('#dropbox').modal();
+    });
+
+    var dropbox = $('#dropbox'),
+        message = $('.message', dropbox);
+
+    dropbox.filedrop({
+        paramname: 'uploadFiles',
+        maxfiles: 5,
+        maxfilesize: 2, // in mb
+        url: '/api/documents',
+        data: {
+            selectedDir: function () {
+                return viewModel.getPath();
+            }
+        },
+        uploadFinished: function (i, file, response) {
+//            $.data(file).addClass('done');
+            // response is the JSON object that post_file.php returns
+        },
+
+        error: function (err, file) {
+            switch (err) {
+                case 'BrowserNotSupported':
+                    showMessage('Your browser does not support HTML5 file uploads!');
+                    break;
+                case 'TooManyFiles':
+                    alert('Too many files! Please select 5 at most!');
+                    break;
+                case 'FileTooLarge':
+                    alert(file.name + ' is too large! Please upload files up to 2mb.');
+                    break;
+                default:
+                    break;
+            }
+        },
+
+        // Called before each upload is started
+        beforeEach: function (file) {
+            path = $('#btnUpload').attr('data-path');
+            console.log(path);
+        },
+
+        uploadStarted: function (i, file, len) {
+            //                createImage(file);
+        },
+
+        progressUpdated: function (i, file, progress) {
+            //                $.data(file).find('.progress').width(progress);
+        }
+
+    });
+
+    var template = '...';
+
+
+    function showMessage(msg) {
+        //            message.html(msg);
+    }
+
 
 });
 
