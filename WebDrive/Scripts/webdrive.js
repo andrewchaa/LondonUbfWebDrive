@@ -98,6 +98,9 @@ $(function () {
             }
         },
         uploadFinished: function (i, file, response) {
+            $('#dropbox').modal('hide');
+            $('#msgUploadDone').removeClass('hide').addClass('alert alert-block alert-success');
+            console.log('test');
 //            $.data(file).addClass('done');
             // response is the JSON object that post_file.php returns
         },
