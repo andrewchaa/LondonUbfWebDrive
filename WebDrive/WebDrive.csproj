@@ -42,6 +42,9 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="log4net">
+      <HintPath>..\packages\log4net.2.0.0\lib\net40-full\log4net.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="MongoDB.Bson">
       <HintPath>..\packages\mongocsharpdriver.1.8.1\lib\net35\MongoDB.Bson.dll</HintPath>
@@ -223,6 +226,7 @@
     <Content Include="Content\themes\font-awesome\less\mixins.less" />
     <Content Include="Content\themes\font-awesome\less\path.less" />
     <Content Include="Content\themes\font-awesome\less\variables.less" />
+    <Content Include="log4net.config" />
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
     <Content Include="Images\cloud.ico" />
     <Content Include="Images\cloud.png" />

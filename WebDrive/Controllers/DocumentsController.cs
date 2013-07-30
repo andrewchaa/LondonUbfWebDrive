@@ -6,9 +6,11 @@ using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
+using System.Web.Mvc;
 using System.Web.Script.Serialization;
 using LondonUbfWebDrive.Domain.Model;
 using LondonUbfWebDrive.Domain.Services;
+using log4net;
 
 namespace LondonUbfWebDrive.Controllers
 {
@@ -16,11 +18,13 @@ namespace LondonUbfWebDrive.Controllers
     {
         private readonly IReadDocumentService _service;
         private readonly IConfigService _configService;
+        private static readonly ILog _log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
         public DocumentsController(IReadDocumentService service, IConfigService configService)
         {
             _service = service;
             _configService = configService;
+            
         }
 
         // GET api/documents
@@ -50,7 +54,6 @@ namespace LondonUbfWebDrive.Controllers
 
             try
             {
-                
                 await Request.Content.ReadAsMultipartAsync(provider);
 
                 var filenames = new List<string>();
@@ -72,7 +75,8 @@ namespace LondonUbfWebDrive.Controllers
             }
             catch (System.Exception e)
             {
-                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, e);
+                _log.Error(e);
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, e.InnerException);
             }
         }
 

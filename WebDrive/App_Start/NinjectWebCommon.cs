@@ -8,6 +8,8 @@ using LondonUbfWebDrive.Domain.Services;
 using LondonUbfWebDrive.Infrastructure;
 using LondonUbfWebDrive.Repositories;
 using LondonUbfWebDrive.Service;
+using log4net;
+using log4net.Core;
 
 [assembly: WebActivator.PreApplicationStartMethod(typeof(LondonUbfWebDrive.App_Start.NinjectWebCommon), "Start")]
 [assembly: WebActivator.ApplicationShutdownMethodAttribute(typeof(LondonUbfWebDrive.App_Start.NinjectWebCommon), "Stop")]
@@ -71,6 +73,7 @@ namespace LondonUbfWebDrive.App_Start
             kernel.Bind<IMetaDataRepository>().To<MetaDataRepository>();
             kernel.Bind<IMongoDbHelper>().To<MongoDbHelper>().InSingletonScope();
             kernel.Bind<IConfigService>().To<ConfigService>();
+            kernel.Bind<ILog>().To<LogImpl>();
         }        
     }
 }

@@ -32,6 +32,7 @@ Ankh.NoLoad
 
 #file upload folder
 App_Data/
+WebDrive/log/
 
 #Tooling
 _ReSharper*/

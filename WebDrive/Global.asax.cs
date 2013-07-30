@@ -1,4 +1,5 @@
-﻿using System.Web.Http;
+﻿using System.IO;
+using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
@@ -18,6 +19,9 @@ namespace LondonUbfWebDrive
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+
+            string logConfig = Server.MapPath("~/log4net.config");
+            log4net.Config.XmlConfigurator.ConfigureAndWatch(new FileInfo(logConfig));
         }
     }
 }
