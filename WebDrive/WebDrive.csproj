@@ -171,6 +171,7 @@
     <Compile Include="Service\ConfigService.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\to_keep_the_folder.txt" />
     <Content Include="Content\bootstrap\css\bootstrap-responsive.css" />
     <Content Include="Content\bootstrap\css\bootstrap-responsive.min.css" />
     <Content Include="Content\bootstrap\css\bootstrap.css" />
@@ -291,9 +292,7 @@
     <Content Include="Views\Shared\_SidebarMenu.cshtml" />
     <Content Include="Views\Home\_MessageBox.cshtml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App_Data\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="packages.config" />
   </ItemGroup>
