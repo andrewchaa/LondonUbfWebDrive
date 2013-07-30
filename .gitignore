@@ -30,6 +30,9 @@ obj/
 [Rr]elease*/
 Ankh.NoLoad
 
+#file upload folder
+App_Data/
+
 #Tooling
 _ReSharper*/
 *.resharper

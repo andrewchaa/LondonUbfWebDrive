@@ -285,6 +285,7 @@
     <Content Include="Views\Home\_RecentDownloads.cshtml" />
     <Content Include="Views\Home\_Suggestions.cshtml" />
     <Content Include="Views\Shared\_SidebarMenu.cshtml" />
+    <Content Include="Views\Home\_MessageBox.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

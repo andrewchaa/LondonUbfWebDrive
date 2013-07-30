@@ -3,6 +3,7 @@
     self.breadcrumbs = ko.observableArray();
     self.documents = ko.observableArray();
     self.recentDownloads = ko.observableArray();
+    self.filesUploaded = ko.observableArray();
     self.path = '';
 
     self.getPath = function() {
@@ -66,9 +67,18 @@
 
     self.saveMetaData = function(item) {
         $.post('api/metadata', "=" + ko.toJSON(item));
-        console.log(ko.toJSON(item));
     };
-    
+
+    self.displayUploadDoneFor = function(file) {
+        console.log(file);
+        self.filesUploaded.push(file);
+        self.list(self.path);
+    };
+
+    self.clearUploadDone = function() {
+        self.filesUploaded.removeAll();
+    };
+
 };
 
 $(function () {
@@ -84,8 +94,7 @@ $(function () {
         $('#dropbox').modal();
     });
 
-    var dropbox = $('#dropbox'),
-        message = $('.message', dropbox);
+    var dropbox = $('#dropbox');
 
     dropbox.filedrop({
         paramname: 'uploadFiles',
@@ -99,10 +108,14 @@ $(function () {
         },
         uploadFinished: function (i, file, response) {
             $('#dropbox').modal('hide');
-            $('#msgUploadDone').removeClass('hide').addClass('alert alert-block alert-success');
-            console.log('test');
-//            $.data(file).addClass('done');
-            // response is the JSON object that post_file.php returns
+            $('#msgUploadDone').fadeIn();
+
+            viewModel.displayUploadDoneFor(file);
+            setTimeout(function () {
+                $('#msgUploadDone').fadeOut();
+                viewModel.clearUploadDone();
+            }, 3000);
+
         },
 
         error: function (err, file) {
