@@ -50,7 +50,6 @@ namespace LondonUbfWebDrive.Controllers
         {
             string tempStorage = HttpContext.Current.Server.MapPath("~/App_Data");
             var provider = new MultipartFormDataStreamProvider(tempStorage);
-            string selectedDir = provider.FormData["selectedDir"];
 
             try
             {
@@ -61,10 +60,14 @@ namespace LondonUbfWebDrive.Controllers
                 foreach (var file in provider.FileData)
                 {
                     string filename = file.Headers.ContentDisposition.FileName.Replace("\"", string.Empty);
-                    string to = Path.Combine(_configService.BaseFolder + selectedDir, filename); 
+                    string to = Path.Combine(_configService.BaseFolder + provider.FormData["selectedDir"], filename); 
+
+                    _log.InfoFormat("A file({0}) is uploaded to temp folder", filename);
                     
                     var upload = new Upload(file.LocalFileName, to);
                     upload.Move();
+
+                    _log.InfoFormat("A file ({0}) is moved to the target folder ({1})", filename, to);
 
                     filenames.Add(filename);
                 }
