@@ -4,7 +4,7 @@ using System.Web.Http;
 using LondonUbfWebDrive.Domain.Model;
 using LondonUbfWebDrive.Domain.Services;
 
-namespace LondonUbfWebDrive.Controllers
+namespace WebDrive.Controllers
 {
     public class FoldersController : ApiController
     {

@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Web.Http;
 using LondonUbfWebDrive.Domain.Interfaces;
 using LondonUbfWebDrive.Domain.Model;
-using LondonUbfWebDrive.Models;
 using Newtonsoft.Json;
+using WebDrive.Models;
 
-namespace LondonUbfWebDrive.Controllers
+namespace WebDrive.Controllers
 {
     public class MetaDataController : ApiController
     {

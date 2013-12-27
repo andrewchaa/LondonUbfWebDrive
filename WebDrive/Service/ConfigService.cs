@@ -1,7 +1,7 @@
 ﻿using System.Configuration;
 using LondonUbfWebDrive.Domain.Model;
 
-namespace LondonUbfWebDrive.Service
+namespace WebDrive.Service
 {
     public class ConfigService : IConfigService
     {

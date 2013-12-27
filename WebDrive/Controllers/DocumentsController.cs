@@ -6,13 +6,12 @@ using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
-using System.Web.Mvc;
 using System.Web.Script.Serialization;
 using LondonUbfWebDrive.Domain.Model;
 using LondonUbfWebDrive.Domain.Services;
 using log4net;
 
-namespace LondonUbfWebDrive.Controllers
+namespace WebDrive.Controllers
 {
     public class DocumentsController : ApiController
     {

@@ -1,17 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using LondonUbfWebDrive.Domain;
 using LondonUbfWebDrive.Domain.Interfaces;
 using LondonUbfWebDrive.Domain.Model;
-using LondonUbfWebDrive.Infrastructure;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization;
-using MongoDB.Driver;
-using MongoDB.Driver.Builders;
 using MongoDB.Driver.Linq;
+using WebDrive.Infrastructure;
 
-namespace LondonUbfWebDrive.Repositories
+namespace WebDrive.Repositories
 {
     public class MetaDataRepository : IMetaDataRepository
     {

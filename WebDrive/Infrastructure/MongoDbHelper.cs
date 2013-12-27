@@ -1,7 +1,7 @@
 ﻿using LondonUbfWebDrive.Domain.Model;
 using MongoDB.Driver;
 
-namespace LondonUbfWebDrive.Infrastructure
+namespace WebDrive.Infrastructure
 {
     public class MongoDbHelper : IMongoDbHelper
     {

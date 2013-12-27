@@ -6,7 +6,7 @@ using Ninject.Activation;
 using Ninject.Parameters;
 using Ninject.Syntax;
 
-namespace LondonUbfWebDrive.Infrastructure
+namespace WebDrive.Infrastructure
 {
     public class NinjectScope : IDependencyScope
     {

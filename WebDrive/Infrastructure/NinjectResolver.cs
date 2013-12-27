@@ -1,8 +1,7 @@
-﻿using System.Web;
-using System.Web.Http.Dependencies;
+﻿using System.Web.Http.Dependencies;
 using Ninject;
 
-namespace LondonUbfWebDrive.Infrastructure
+namespace WebDrive.Infrastructure
 {
     public class NinjectResolver : NinjectScope, IDependencyResolver
     {

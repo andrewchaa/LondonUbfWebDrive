@@ -1,4 +1,4 @@
-﻿namespace LondonUbfWebDrive.Models
+﻿namespace WebDrive.Models
 {
     public class DocumentViewModel
     {

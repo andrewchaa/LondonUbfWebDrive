@@ -1,0 +1,76 @@
+﻿<div id="page-content" class="clearfix">
+	<div class="page-header position-relative">
+		<h1>Web gallery<small><i class="icon-double-angle-right"></i> view and download pictures</small></h1>
+	</div><!--/.page-header-->
+
+	<div class="row-fluid">
+	    
+	    <div class="row-fluid">@Html.Partial("_Suggestions")</div>
+
+	    <!--PAGE CONTENT BEGINS HERE-->
+        @Html.Partial("_MessageBox")
+
+	    <div class="row-fluid">
+    
+	        <div class="span8">
+	            
+	            <div class="widget-box">
+	                
+	                <div class="widget-header widget-header-flat" id="breadcrumbs">
+	                    @Html.Partial("_Breadcrumb")
+	                    <div class="widget-toolbar"><button class="btn btn-primary btn-small" id="btnUpload">Upload</button></div>
+	                </div>
+	                <div class="widget-body"><div class="widget-main">@Html.Partial("_Thumbnails")</div></div>
+	            
+	            </div><!-- /widget-box -->
+
+	        </div><!--/span-->
+            
+	        <div class="span4">
+	            
+	            <div class="widget-box">
+	                
+	                <div class="widget-header widget-header-flat"><h6>Recent downloads</h6></div>
+	                <div class="widget-body"><div class="widget-main">@Html.Partial("_RecentDownloads")</div></div>
+	            
+                </div><!-- /widget-box -->
+	            
+	        </div><!-- /span -->
+	    </div>
+
+	    <!--PAGE CONTENT ENDS HERE-->
+	</div><!--/row-->
+</div><!--/#page-content-->
+
+<div id="dropbox" class="modal hide fade" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-body" style="height: 400px;">
+        <h5 class="text-center orange" style="padding-top: 180px;">Please drag and drop the file(s) to upload here...</h5>
+    </div>
+    <div class="modal-footer"><button class="btn btn-small" data-dismiss="modal" aria-hidden="true">Close</button></div>
+</div>
+
+<script type="text/javascript">
+
+    var ImageViewModel = function() {
+        var self = this;
+
+        self.filesUploaded = ko.observableArray();
+        self.breadcrumbs = ko.observableArray();
+        self.recentDownloads = ko.observableArray();
+        self.images =
+        [
+            { src: '/Images/Desert.jpg' },
+            { src: '/Images/Desert.jpg' },
+            { src: '/Images/Desert.jpg' },
+            { src: '/Images/Desert.jpg' }
+        ];
+    };
+
+    $(function() {
+        var viewmodel = new ImageViewModel();
+        ko.applyBindings(viewmodel);
+    });
+
+    
+
+</script>

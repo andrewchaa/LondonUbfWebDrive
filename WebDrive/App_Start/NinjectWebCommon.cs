@@ -1,29 +1,24 @@
-using System.Configuration;
 using System.Web.Http;
-using LondonUbfWebDrive.Controllers;
-using LondonUbfWebDrive.Domain;
 using LondonUbfWebDrive.Domain.Interfaces;
 using LondonUbfWebDrive.Domain.Model;
 using LondonUbfWebDrive.Domain.Services;
-using LondonUbfWebDrive.Infrastructure;
-using LondonUbfWebDrive.Repositories;
-using LondonUbfWebDrive.Service;
+using WebDrive.App_Start;
+using WebDrive.Infrastructure;
+using WebDrive.Repositories;
+using WebDrive.Service;
 using log4net;
 using log4net.Core;
+using System;
+using System.Web;
+using Microsoft.Web.Infrastructure.DynamicModuleHelper;
+using Ninject;
+using Ninject.Web.Common;
 
-[assembly: WebActivator.PreApplicationStartMethod(typeof(LondonUbfWebDrive.App_Start.NinjectWebCommon), "Start")]
-[assembly: WebActivator.ApplicationShutdownMethodAttribute(typeof(LondonUbfWebDrive.App_Start.NinjectWebCommon), "Stop")]
+[assembly: WebActivator.PreApplicationStartMethod(typeof(NinjectWebCommon), "Start")]
+[assembly: WebActivator.ApplicationShutdownMethodAttribute(typeof(NinjectWebCommon), "Stop")]
 
-namespace LondonUbfWebDrive.App_Start
+namespace WebDrive.App_Start
 {
-    using System;
-    using System.Web;
-
-    using Microsoft.Web.Infrastructure.DynamicModuleHelper;
-
-    using Ninject;
-    using Ninject.Web.Common;
-
     public static class NinjectWebCommon 
     {
         private static readonly Bootstrapper bootstrapper = new Bootstrapper();

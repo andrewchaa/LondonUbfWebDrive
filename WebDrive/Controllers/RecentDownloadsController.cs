@@ -1,10 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Web.Http;
-using LondonUbfWebDrive.Domain;
 using LondonUbfWebDrive.Domain.Interfaces;
 using LondonUbfWebDrive.Domain.Model;
 
-namespace LondonUbfWebDrive.Controllers
+namespace WebDrive.Controllers
 {
     public class RecentDownloadsController : ApiController
     {

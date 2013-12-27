@@ -11,8 +11,8 @@
     <ProjectTypeGuids>{E3E379DF-F4C6-4180-9B81-6769533ABE47};{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>LondonUbfWebDrive</RootNamespace>
-    <AssemblyName>LondonUbfWebDrive</AssemblyName>
+    <RootNamespace>WebDrive</RootNamespace>
+    <AssemblyName>WebDrive</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
@@ -290,6 +290,8 @@
     <Content Include="Views\Home\_Suggestions.cshtml" />
     <Content Include="Views\Shared\_SidebarMenu.cshtml" />
     <Content Include="Views\Home\_MessageBox.cshtml" />
+    <Content Include="Views\Home\Gallery.cshtml" />
+    <Content Include="Views\Home\_Thumbnails.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
