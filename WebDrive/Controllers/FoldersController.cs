@@ -32,20 +32,5 @@ namespace WebDrive.Controllers
 
             return documents;
         }
-
-        // POST api/directory
-        public void Post([FromBody]string value)
-        {
-        }
-
-        // PUT api/directory/5
-        public void Put(int id, [FromBody]string value)
-        {
-        }
-
-        // DELETE api/directory/5
-        public void Delete(int id)
-        {
-        }
     }
 }

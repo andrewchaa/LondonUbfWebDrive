@@ -158,6 +158,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MetaDataController.cs" />
     <Compile Include="Controllers\RecentDownloadsController.cs" />
+    <Compile Include="Controllers\ThumbnailsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
