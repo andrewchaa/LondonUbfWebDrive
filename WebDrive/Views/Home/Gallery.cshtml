@@ -57,18 +57,37 @@
         self.filesUploaded = ko.observableArray();
         self.breadcrumbs = ko.observableArray();
         self.recentDownloads = ko.observableArray();
-        self.images =
-        [
-            { src: '/Home/GetThumbnail/5' },
-            { src: '/Images/Desert.jpg' },
-            { src: '/Images/Desert.jpg' },
-            { src: '/Images/Desert.jpg' }
-        ];
+        self.images = ko.observableArray();
+
+        self.getImage = function() {
+            $.get('/api/thumbnails/5', function(data) {
+                self.images.push(data);
+            });
+        };
+
+        self.list = function() {
+            $.get('/api/thumbnails')
+        };
     };
 
     $(function() {
         var viewmodel = new ImageViewModel();
         ko.applyBindings(viewmodel);
+
+        viewmodel.getImage();
+        viewmodel.getImage();
+        viewmodel.getImage();
+        viewmodel.getImage();
+        viewmodel.getImage();
+        viewmodel.getImage();
+        viewmodel.getImage();
+        viewmodel.getImage();
+        viewmodel.getImage();
+        viewmodel.getImage();
+        viewmodel.getImage();
+        viewmodel.getImage();
+        viewmodel.getImage();
+
     });
 
     

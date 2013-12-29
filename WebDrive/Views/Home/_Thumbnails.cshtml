@@ -2,7 +2,7 @@
 	<div class="span12">
 				            
         <ul class="thumbnails" data-bind="foreach: images">
-            <li class="span3"><a href="#" class="thumbnail"><img data-bind="attr: { src: src }" /></a></li>
+            <li><a href="#" class="thumbnail"><img data-bind="attr: { src: 'data:' + ContentType + ';base64,' + FileContents }" /></a></li>
         </ul>
 
 	</div>
