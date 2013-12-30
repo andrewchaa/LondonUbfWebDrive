@@ -53,17 +53,41 @@
 
     var ImageViewModel = function() {
         var self = this;
-
         self.filesUploaded = ko.observableArray();
         self.breadcrumbs = ko.observableArray();
         self.recentDownloads = ko.observableArray();
         self.images = ko.observableArray();
 
-        self.list = function() {
-            $.get('/api/thumbnails', function(data) {
+        self.list = function (directory) {
+            var api = '/api/thumbnails';
+            if (directory) {
+                api += '/' + directory
+            }
+
+            $.get(api, function (data) {
                 self.images(data);
             });
         };
+
+        self.click = function (thumbnail) {
+            if (!!thumbnail.IsDirectory) {
+                self.list(thumbnail.RelativePath);
+                self.getBreadcrumbs(thumbnail.RelativePath);
+            }
+            console.log(thumbnail);
+        };
+        
+        self.getBreadcrumbs = function (path) {
+            $.get('/api/breadcrumbs/' + path, function (data) {
+                self.breadcrumbs(data);
+            });
+        };
+
+        self.clickBreadcrumb = function (item) {
+            self.list(item.Path);
+            self.getBreadcrumbs(item.Path);
+        };
+
     };
 
     $(function() {
@@ -71,6 +95,8 @@
         ko.applyBindings(viewmodel);
 
         viewmodel.list();
+        viewmodel.getBreadcrumbs('/');
+
 
     });
 

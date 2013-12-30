@@ -10,11 +10,13 @@ namespace WebDrive.Domain.Model
         public byte[] Content { get; private set; }
         public string ContentType { get; private set; }
         public bool IsDirectory { get; private set; }
+        public string RelativePath { get; private set; }
 
-        public Thumbnail(string fullname, string name, byte[] content, string contentType, bool isDirectory)
+        public Thumbnail(string fullname, string name, string relativePath, byte[] content, string contentType, bool isDirectory)
         {
             Fullname = fullname;
             Name = name;
+            RelativePath = relativePath;
             Content = content;
             IsDirectory = isDirectory;
             ContentType = contentType;
