@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace LondonUbfWebDrive.Domain.Model
+namespace WebDrive.Domain.Model
 {
     public class DocumentMap
     {

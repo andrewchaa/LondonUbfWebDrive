@@ -2,7 +2,7 @@
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 
-namespace LondonUbfWebDrive.Domain.Model
+namespace WebDrive.Domain.Model
 {
     public class DocumentMetadata
     {

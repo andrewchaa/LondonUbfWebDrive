@@ -1,4 +1,4 @@
-﻿namespace LondonUbfWebDrive.Domain.Model
+﻿namespace WebDrive.Domain.Model
 {
     public class Breadcrumb
     {

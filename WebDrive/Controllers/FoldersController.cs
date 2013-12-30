@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Configuration;
 using System.Web.Http;
-using LondonUbfWebDrive.Domain.Model;
-using LondonUbfWebDrive.Domain.Services;
+using WebDrive.Domain.Model;
+using WebDrive.Domain.Services;
 
 namespace WebDrive.Controllers
 {
@@ -14,7 +14,7 @@ namespace WebDrive.Controllers
         public FoldersController(IReadDocumentService service)
         {
             _service = service;
-            _baseFolder = ConfigurationManager.AppSettings["BaseFolder"];
+            _baseFolder = ConfigurationManager.AppSettings["FileDirectory"];
         }
 
         // GET api/folders

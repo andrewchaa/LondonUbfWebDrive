@@ -1,8 +1,8 @@
 using System.Web.Http;
-using LondonUbfWebDrive.Domain.Interfaces;
-using LondonUbfWebDrive.Domain.Model;
-using LondonUbfWebDrive.Domain.Services;
 using WebDrive.App_Start;
+using WebDrive.Controllers;
+using WebDrive.Domain.Contracts;
+using WebDrive.Domain.Services;
 using WebDrive.Infrastructure;
 using WebDrive.Repositories;
 using WebDrive.Service;
@@ -67,8 +67,9 @@ namespace WebDrive.App_Start
             kernel.Bind<IBreadcrumbService>().To<BreadcrumbService>();
             kernel.Bind<IMetaDataRepository>().To<MetaDataRepository>();
             kernel.Bind<IMongoDbHelper>().To<MongoDbHelper>().InSingletonScope();
-            kernel.Bind<IConfigService>().To<ConfigService>();
+            kernel.Bind<IConfig>().To<Config>();
             kernel.Bind<ILog>().To<LogImpl>();
+            kernel.Bind<IReadThumbnails>().To<ThumbnailsReader>();
         }        
     }
 }

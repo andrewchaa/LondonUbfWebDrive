@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using LondonUbfWebDrive.Domain.Model;
-using LondonUbfWebDrive.Domain.Services;
 using Machine.Specifications;
+using WebDrive.Domain.Model;
+using WebDrive.Domain.Services;
 
 namespace LondonUbfWebDrive.Test.Integrations
 {

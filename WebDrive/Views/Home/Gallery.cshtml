@@ -59,14 +59,10 @@
         self.recentDownloads = ko.observableArray();
         self.images = ko.observableArray();
 
-        self.getImage = function() {
-            $.get('/api/thumbnails/5', function(data) {
-                self.images.push(data);
-            });
-        };
-
         self.list = function() {
-            $.get('/api/thumbnails')
+            $.get('/api/thumbnails', function(data) {
+                self.images(data);
+            });
         };
     };
 
@@ -74,19 +70,7 @@
         var viewmodel = new ImageViewModel();
         ko.applyBindings(viewmodel);
 
-        viewmodel.getImage();
-        viewmodel.getImage();
-        viewmodel.getImage();
-        viewmodel.getImage();
-        viewmodel.getImage();
-        viewmodel.getImage();
-        viewmodel.getImage();
-        viewmodel.getImage();
-        viewmodel.getImage();
-        viewmodel.getImage();
-        viewmodel.getImage();
-        viewmodel.getImage();
-        viewmodel.getImage();
+        viewmodel.list();
 
     });
 

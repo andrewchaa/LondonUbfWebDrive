@@ -7,8 +7,8 @@
     <ProjectGuid>{0AA67104-0B92-4EB5-9CD5-BDF647609118}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>LondonUbfWebDrive.Domain</RootNamespace>
-    <AssemblyName>LondonUbfWebDrive.Domain</AssemblyName>
+    <RootNamespace>WebDrive.Domain</RootNamespace>
+    <AssemblyName>WebDrive.Domain</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
@@ -38,6 +38,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -45,17 +46,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Contracts\IConfig.cs" />
     <Compile Include="Model\Breadcrumb.cs" />
     <Compile Include="Model\Thumbnail.cs" />
     <Compile Include="Model\Upload.cs" />
-    <Compile Include="Services\IConfigService.cs" />
+    <Compile Include="Model\WebDirectory.cs" />
     <Compile Include="Services\BreadcrumbService.cs" />
     <Compile Include="Model\Document.cs" />
     <Compile Include="Model\DocumentMap.cs" />
     <Compile Include="Model\DocumentMetadata.cs" />
     <Compile Include="Services\IBreadcrumbService.cs" />
     <Compile Include="Services\IReadDocumentService.cs" />
-    <Compile Include="Interfaces\IMetaDataRepository.cs" />
+    <Compile Include="Contracts\IMetaDataRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\ReadDocumentService.cs" />
   </ItemGroup>

@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using LondonUbfWebDrive.Domain.Model;
+using WebDrive.Domain.Model;
 
-namespace LondonUbfWebDrive.Domain.Services
+namespace WebDrive.Domain.Services
 {
     public class ReadDocumentService : IReadDocumentService
     {

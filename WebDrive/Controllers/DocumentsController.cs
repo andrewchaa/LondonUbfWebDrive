@@ -7,8 +7,9 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
 using System.Web.Script.Serialization;
-using LondonUbfWebDrive.Domain.Model;
-using LondonUbfWebDrive.Domain.Services;
+using WebDrive.Domain.Contracts;
+using WebDrive.Domain.Model;
+using WebDrive.Domain.Services;
 using log4net;
 
 namespace WebDrive.Controllers
@@ -16,20 +17,20 @@ namespace WebDrive.Controllers
     public class DocumentsController : ApiController
     {
         private readonly IReadDocumentService _service;
-        private readonly IConfigService _configService;
+        private readonly IConfig _config;
         private static readonly ILog _log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
-        public DocumentsController(IReadDocumentService service, IConfigService configService)
+        public DocumentsController(IReadDocumentService service, IConfig config)
         {
             _service = service;
-            _configService = configService;
+            _config = config;
             
         }
 
         // GET api/documents
         public IEnumerable<Document> Get()
         {
-            var documents = _service.List(_configService.BaseFolder);
+            var documents = _service.List(_config.FileDirectory);
 
             return documents;
         }
@@ -37,7 +38,7 @@ namespace WebDrive.Controllers
         // GET api/documents/text.txt
         public HttpResponseMessage Get(string path)
         {
-            string fullname = Path.Combine(_configService.BaseFolder, path);
+            string fullname = Path.Combine(_config.FileDirectory, path);
             var document = _service.Get(fullname);
             var response = GetDownloadResponseFrom(document);
 
@@ -59,7 +60,7 @@ namespace WebDrive.Controllers
                 foreach (var file in provider.FileData)
                 {
                     string filename = file.Headers.ContentDisposition.FileName.Replace("\"", string.Empty);
-                    string to = Path.Combine(_configService.BaseFolder + provider.FormData["selectedDir"], filename); 
+                    string to = Path.Combine(_config.FileDirectory + provider.FormData["selectedDir"], filename); 
 
                     _log.InfoFormat("A file({0}) is uploaded to temp folder", filename);
                     

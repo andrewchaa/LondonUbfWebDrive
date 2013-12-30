@@ -1,19 +1,20 @@
-﻿using LondonUbfWebDrive.Domain.Model;
-using MongoDB.Driver;
+﻿using MongoDB.Driver;
+using WebDrive.Domain.Contracts;
+using WebDrive.Domain.Services;
 
 namespace WebDrive.Infrastructure
 {
     public class MongoDbHelper : IMongoDbHelper
     {
-        private readonly IConfigService _configService;
+        private readonly IConfig _config;
         private readonly MongoClient _client;
         private readonly MongoServer _server;
         private readonly MongoDatabase _database;
 
-        public MongoDbHelper(IConfigService configService)
+        public MongoDbHelper(IConfig config)
         {
-            _configService = configService;
-            _client = new MongoClient(_configService.ConnectionString);
+            _config = config;
+            _client = new MongoClient(_config.ConnectionString);
             _server = _client.GetServer();
             _database = _server.GetDatabase("webdrive");
         }

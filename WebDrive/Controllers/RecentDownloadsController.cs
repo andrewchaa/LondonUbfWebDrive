@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Web.Http;
-using LondonUbfWebDrive.Domain.Interfaces;
-using LondonUbfWebDrive.Domain.Model;
+using WebDrive.Domain.Contracts;
+using WebDrive.Domain.Model;
 
 namespace WebDrive.Controllers
 {

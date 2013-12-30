@@ -169,7 +169,7 @@
     <Compile Include="Models\DocumentViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\MetaDataRepository.cs" />
-    <Compile Include="Service\ConfigService.cs" />
+    <Compile Include="Service\Config.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\to_keep_the_folder.txt" />
