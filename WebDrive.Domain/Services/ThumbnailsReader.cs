@@ -10,37 +10,38 @@ namespace WebDrive.Domain.Services
 {
     public class ThumbnailsReader : IReadThumbnails
     {
+        private readonly IFileDirectoryService _fileDirectoryService;
         private readonly IConfig _config;
         private readonly string[] _imageFileExtensions;
 
-        public ThumbnailsReader(IConfig config)
+        public ThumbnailsReader(IFileDirectoryService fileDirectoryService, IConfig config)
         {
+            _fileDirectoryService = fileDirectoryService;
             _config = config;
             _imageFileExtensions = new[] { ".jpg", ".png", ".gif", ".tif" };
         }
 
         public IEnumerable<Thumbnail> List()
         {
-            var directory = new DirectoryInfo(_config.PictureDirectory);
-
-            var thumbnails = GetDirectories(directory).ToList();
-            thumbnails.AddRange(GetThumbnails(directory));
+            var thumbnails = GetDirectories(_config.PictureDirectory).ToList();
+            thumbnails.AddRange(GetThumbnails(_config.PictureDirectory));
 
             return thumbnails.ToList();
         }
 
-        public IEnumerable<Thumbnail> List(string path)
+        public IEnumerable<Thumbnail> List(string relativePath)
         {
-            var directory = new DirectoryInfo(Path.Combine(_config.PictureDirectory, path));
+            string path = Path.Combine(_config.PictureDirectory, relativePath);
 
-            var thumbnails = GetDirectories(directory).ToList();
-            thumbnails.AddRange(GetThumbnails(directory));
+            var thumbnails = GetDirectories(path).ToList();
+            thumbnails.AddRange(GetThumbnails(path));
 
             return thumbnails.ToList();
         }
 
-        private IEnumerable<Thumbnail> GetDirectories(DirectoryInfo directory)
+        private IEnumerable<Thumbnail> GetDirectories(string path)
         {
+            var directory = new DirectoryInfo(path);
             return directory.EnumerateDirectories().Select(d =>
                 new Thumbnail(d.FullName, d.Name, GetRelativePath(d.FullName), null, string.Empty, true)).ToList();
         }
@@ -50,8 +51,9 @@ namespace WebDrive.Domain.Services
             return fullname.Replace(_config.PictureDirectory, string.Empty);
         }
 
-        private IEnumerable<Thumbnail> GetThumbnails(DirectoryInfo directory)
+        private IEnumerable<Thumbnail> GetThumbnails(string path)
         {
+            var directory = new DirectoryInfo(path);
             var files = directory.EnumerateFiles().Where(f => _imageFileExtensions.Contains(f.Extension));
 
             var thumbnails = files.Select(t => new Thumbnail(

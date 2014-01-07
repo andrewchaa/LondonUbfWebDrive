@@ -60,6 +60,7 @@
     <Compile Include="TestDoubles\StubConfig.cs" />
     <Compile Include="Unit\BreadcrumbTests.cs" />
     <Compile Include="Integrations\ThumbnailReaderTests.cs" />
+    <Compile Include="Unit\ThumbnailsReaderTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\WebDrive.Domain\WebDrive.Domain.csproj">

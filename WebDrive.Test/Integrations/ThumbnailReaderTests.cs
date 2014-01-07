@@ -17,15 +17,17 @@ namespace LondonUbfWebDrive.Test.Integrations
         private static string _pictureDirectory;
         private static string _subddirectory;
         private static IConfig _config;
+        private static IFileDirectoryService _fileDirectoryService;
 
         Establish context = () =>
             {
+                _fileDirectoryService = new FileDirectoryService();
                 _pictureDirectory = @"c:\temp\";
                 _subddirectory = "subddirectory 1";
                 _config = new StubConfig(_pictureDirectory);
                 new DirectoryInfo(_pictureDirectory).CreateSubdirectory(_subddirectory);
 
-                _reader = new ThumbnailsReader(_config);
+                _reader = new ThumbnailsReader(_fileDirectoryService, _config);
             };
 
         Because of = () => _thumbnails = _reader.List(_pictureDirectory);

@@ -57,6 +57,7 @@
     <Compile Include="Model\Document.cs" />
     <Compile Include="Model\DocumentMap.cs" />
     <Compile Include="Model\DocumentMetadata.cs" />
+    <Compile Include="Services\FileDirectoryService.cs" />
     <Compile Include="Services\IBreadcrumbService.cs" />
     <Compile Include="Services\IReadDocumentService.cs" />
     <Compile Include="Contracts\IMetaDataRepository.cs" />
