@@ -41,9 +41,10 @@ namespace WebDrive.Domain.Services
 
         private IEnumerable<Thumbnail> GetDirectories(string path)
         {
-            var directory = new DirectoryInfo(path);
-            return directory.EnumerateDirectories().Select(d =>
-                new Thumbnail(d.FullName, d.Name, GetRelativePath(d.FullName), null, string.Empty, true)).ToList();
+            var webDirectories = _fileDirectoryService.EnumerateDirectories(path);
+            return webDirectories.Select(
+                d => new Thumbnail(d.FullName, d.Name, GetRelativePath(d.FullName), null, string.Empty, true)
+                ).ToList();
         }
 
         private string GetRelativePath(string fullname)
@@ -53,9 +54,7 @@ namespace WebDrive.Domain.Services
 
         private IEnumerable<Thumbnail> GetThumbnails(string path)
         {
-            var directory = new DirectoryInfo(path);
-            var files = directory.EnumerateFiles().Where(f => _imageFileExtensions.Contains(f.Extension));
-
+            var files = _fileDirectoryService.EnumerateFiles(path).Where(f => _imageFileExtensions.Contains(f.Extension));
             var thumbnails = files.Select(t => new Thumbnail(
                                                          t.FullName,
                                                          t.Name,

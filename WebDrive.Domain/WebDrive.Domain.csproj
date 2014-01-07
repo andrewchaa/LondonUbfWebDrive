@@ -48,11 +48,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Contracts\IConfig.cs" />
+    <Compile Include="Contracts\IFileDirectoryService.cs" />
     <Compile Include="Contracts\IReadThumbnails.cs" />
     <Compile Include="Model\Breadcrumb.cs" />
     <Compile Include="Model\Thumbnail.cs" />
     <Compile Include="Model\Upload.cs" />
-    <Compile Include="Model\WebDirectory.cs" />
+    <Compile Include="Model\WebEntity.cs" />
     <Compile Include="Services\BreadcrumbService.cs" />
     <Compile Include="Model\Document.cs" />
     <Compile Include="Model\DocumentMap.cs" />
