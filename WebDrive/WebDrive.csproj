@@ -228,6 +228,7 @@
     <Content Include="Content\themes\font-awesome\less\mixins.less" />
     <Content Include="Content\themes\font-awesome\less\path.less" />
     <Content Include="Content\themes\font-awesome\less\variables.less" />
+    <Content Include="Images\spinner.gif" />
     <Content Include="log4net.config" />
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
     <Content Include="Images\cloud.ico" />
@@ -265,6 +266,7 @@
     </Content>
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
+      <SubType>Designer</SubType>
     </Content>
     <Content Include="Images\accent.png" />
     <Content Include="Images\bullet.png" />

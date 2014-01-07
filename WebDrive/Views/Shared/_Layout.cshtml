@@ -2,36 +2,36 @@
 <html>
     <head>
         
-		<meta charset="utf-8" />
+        <meta charset="utf-8" />
         <meta name="description" content="London UBF Web Drive" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta name="author" content="Andrew Chaa">
         <link rel="icon" type="image/png" href="/Images/cloud.ico" />
 
-		<!--basic styles-->
+        <!--basic styles-->
         
         <link href="~/Content/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
         <link href="~/Content/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet" />
         <link href="~/Content/themes/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
         <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
 		
-		<!--[if IE 7]>
+        <!--[if IE 7]>
             <link href="~/Content/themes/font-awesome/css/font-awesome-ie7.min.css" rel="stylesheet" />
-		<![endif]-->
+        <![endif]-->
 
-		<!--page specific plugin styles-->
+        <!--page specific plugin styles-->
         <link href="~/Content/themes/css/prettify.css" rel="stylesheet" />
 
-		<!--fonts-->
+        <!--fonts-->
         <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400,300" />
 
-		<!--ace styles-->
+        <!--ace styles-->
         <link href="~/Content/themes/css/w8.min.css" rel="stylesheet" />
         <link href="~/Content/themes/css/w8-responsive.min.css" rel="stylesheet" />
         <link href="~/Content/themes/css/w8-skins.min.css" rel="stylesheet" />
 
 
-		<!--inline styles if any-->
+        <!--inline styles if any-->
 
         <title>@ViewBag.Title</title>
 
@@ -53,41 +53,57 @@
             ga('create', 'UA-2526213-9', 'londonubf.homeip.net');
             ga('send', 'pageview');
         </script>
+        
+        <style>
+            .ajax-loader {
+                position: absolute;
+                left: 50%;
+                top: 50%;
+                margin-left: -32px; /* -1 * image width / 2 */
+                margin-top: -32px;  /* -1 * image height / 2 */
+                display: block;     
+            }
+        </style>
 
     </head>
-<body style="overflow-y: scroll;">
-    
-	<div class="navbar navbar-inverse">
-		<div class="navbar-inner">
-			<div class="container-fluid">
-				<a href="#" class="brand"><small><i class="icon-cloud-download"></i> Web drive</small></a><!--/.brand-->
+    <body style="overflow-y: scroll;">
+        <div class="navbar navbar-inverse">
+            <div class="navbar-inner">
+                <div class="container-fluid">
+                    <a href="#" class="brand"><small><i class="icon-cloud-download"></i> Web drive</small></a><!--/.brand-->
 
-			</div><!--/.container-fluid-->
-		</div><!--/.navbar-inner-->
-	</div>
+                </div><!--/.container-fluid-->
+            </div><!--/.navbar-inner-->
+        </div>
 
-	<div class="container-fluid" id="main-container">
+        <div class="container-fluid" id="main-container">
 
-		<div id="sidebar">@Html.Partial("_SidebarMenu")</div>
-        <div id="main-content" class="clearfix">@RenderBody()</div><!--/#main-content-->
+            <div id="sidebar">@Html.Partial("_SidebarMenu")</div>
+            <div id="main-content" class="clearfix">@RenderBody()</div><!--/#main-content-->
 
-	</div><!--/.fluid-container#main-container-->
+        </div><!--/.fluid-container#main-container-->
 
-	<!--basic scripts-->
+        <!--basic scripts-->
 
-	<script type="text/javascript">
-		window.jQuery || document.write("<script src='themes/js/jquery-1.9.1.min.js'>" + "<" + "/script>");
-	</script>
+        <script type="text/javascript">
+            window.jQuery || document.write("<script src='themes/js/jquery-1.9.1.min.js'>" + "<" + "/script>");
+        </script>
 
-	<!--ace scripts-->
+        <!--ace scripts-->
 
-    <script src="~/Content/themes/js/w8-elements.min.js"></script>
-    <script src="~/Content/themes/js/w8.min.js"></script>
-    <script src="~/Scripts/jquery.filedrop.js"></script>
+        <script src="~/Content/themes/js/w8-elements.min.js"></script>
+        <script src="~/Content/themes/js/w8.min.js"></script>
+        <script src="~/Scripts/jquery.filedrop.js"></script>
 
-	<!--inline scripts related to this page-->
+        <!--inline scripts related to this page-->
 
-
-    @RenderSection("scripts", required: false)
-</body>
+        @RenderSection("scripts", required: false)
+        
+        <img id="spinner" class="ajax-loader" src="~/Images/spinner.gif" />
+        <script type="text/javascript">
+            var $loading = $('#spinner').hide();
+            $(document).ajaxStart(function () { $loading.show(); }).ajaxStop(function () { $loading.hide(); });
+        </script>
+    </body>
 </html>
+
