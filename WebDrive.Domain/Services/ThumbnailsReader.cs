@@ -69,6 +69,9 @@ namespace WebDrive.Domain.Services
         public Thumbnail Get(string fullName)
         {
             var entity = _fileDirectoryService.GetFile(fullName);
+            if (entity.IsDirectory)
+                return new Thumbnail(entity.FullName, entity.Name, GetRelativePath(entity.FullName), null, string.Empty, true);
+
             return new Thumbnail(
                 entity.FullName, 
                 entity.Name, 

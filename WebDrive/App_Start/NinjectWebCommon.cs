@@ -63,7 +63,7 @@ namespace WebDrive.App_Start
         /// <param name="kernel">The kernel.</param>
         private static void RegisterServices(IKernel kernel)
         {
-            kernel.Bind<IReadDocumentService>().To<ReadDocumentService>();
+            kernel.Bind<IReadDocumentService>().To<DocumentReader>();
             kernel.Bind<IBreadcrumbService>().To<BreadcrumbService>();
             kernel.Bind<IMetaDataRepository>().To<MetaDataRepository>();
             kernel.Bind<IMongoDbHelper>().To<MongoDbHelper>().InSingletonScope();

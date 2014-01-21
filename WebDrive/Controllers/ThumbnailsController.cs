@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.IO;
+using System.Text;
+using System.Web;
 using System.Web.Http;
 using WebDrive.Domain.Contracts;
 using WebDrive.Domain.Model;
@@ -24,9 +26,9 @@ namespace WebDrive.Controllers
         }
 
         // GET api/thumbnails/path
-        public IEnumerable<Thumbnail> Get(string path)
+        public Thumbnail Get(string path)
         {
-            return _thumbnailsReader.List(path);
+            return _thumbnailsReader.Get(Encoding.UTF8.GetString(HttpServerUtility.UrlTokenDecode(path)));
         }
 
     }

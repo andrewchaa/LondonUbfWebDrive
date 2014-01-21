@@ -26,9 +26,9 @@ namespace LondonUbfWebDrive.Test.Unit
                 {
                     _fileDirectoryService = new FakeFileDirectoryService();
                     _fileDirectoryService.Directories = 
-                        new List<WebEntity> { WebEntity.Directory(_directoryName, Path.Combine(_config.PictureDirectory, _directoryName))};
+                        new List<WebEntity> { new WebEntity(_directoryName, Path.Combine(_config.PictureDirectory, _directoryName), string.Empty)};
                     _fileDirectoryService.Files = 
-                        new List<WebEntity> { WebEntity.File(_fileName, _fullName, ".jpg")};
+                        new List<WebEntity> { new WebEntity(_fileName, _fullName, ".jpg")};
                     _reader = new ThumbnailsReader(_fileDirectoryService, _config);
                 };
 
@@ -43,7 +43,7 @@ namespace LondonUbfWebDrive.Test.Unit
         {
             Establish context = () =>
                 {
-                    _imageEntity = WebEntity.File(_fileName, _fullName, ".jpg");
+                    _imageEntity = new WebEntity(_fileName, _fullName, ".jpg");
                     
                     _fileDirectoryService = new FakeFileDirectoryService
                         {

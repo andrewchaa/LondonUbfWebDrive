@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -23,20 +24,27 @@ namespace WebDrive.Controllers
         // GET api/filedirectory
         public IEnumerable<WebEntity> Get()
         {
-            var directories = _fileDirectoryService.EnumerateDirectories(_config.PictureDirectory);
-            var files = _fileDirectoryService.EnumerateFiles(_config.PictureDirectory);
-
-            var entities = new List<WebEntity>();
-            entities.AddRange(directories);
-            entities.AddRange(files);
+            var entities = GetWebEntities(string.Empty);
 
             return entities;
         }
 
-        // GET api/filedirectory/5
-        public string Get(int id)
+        private IEnumerable<WebEntity> GetWebEntities(string relativePath)
         {
-            return "value";
+            string path = Path.Combine(_config.PictureDirectory, relativePath);
+            var directories = _fileDirectoryService.EnumerateDirectories(path);
+            var files = _fileDirectoryService.EnumerateFiles(path);
+
+            var entities = new List<WebEntity>();
+            entities.AddRange(directories);
+            entities.AddRange(files);
+            return entities;
+        }
+
+        // GET api/filedirectory/5
+        public IEnumerable<WebEntity> Get(string id)
+        {
+            return GetWebEntities(id);
         }
 
         // POST api/filedirectory

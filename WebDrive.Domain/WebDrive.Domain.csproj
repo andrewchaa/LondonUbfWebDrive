@@ -63,7 +63,7 @@
     <Compile Include="Services\FileDirectoryService.cs" />
     <Compile Include="Contracts\IMetaDataRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\ReadDocumentService.cs" />
+    <Compile Include="Services\DocumentReader.cs" />
     <Compile Include="Services\ThumbnailsReader.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

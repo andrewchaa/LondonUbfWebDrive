@@ -7,5 +7,6 @@ namespace WebDrive.Domain.Contracts
     {
         IEnumerable<Thumbnail> List(string path);
         IEnumerable<Thumbnail> List();
+        Thumbnail Get(string fullName);
     }
 }

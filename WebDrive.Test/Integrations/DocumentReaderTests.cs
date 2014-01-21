@@ -31,7 +31,7 @@ namespace LondonUbfWebDrive.Test.Integrations
     [Subject(typeof(Document))]
     public class When_it_reads_directories_in_the_given_directory : DocumentReaderTests
     {
-        Establish context = () => Service = new ReadDocumentService(); 
+        Establish context = () => Service = new DocumentReader(); 
         Because it_reads_the_directory = () =>
             {
                 Documents = Service.List(BaseFolder, CurrentPath);
@@ -43,7 +43,7 @@ namespace LondonUbfWebDrive.Test.Integrations
     [Subject(typeof(Document))]
     public class When_it_reads_files_in_the_given_directory : DocumentReaderTests
     {
-        Establish context = () => Service = new ReadDocumentService();
+        Establish context = () => Service = new DocumentReader();
         Because It_reads_the_files = () => Documents = Service.List(BaseFolder, CurrentPath);
 
         It should_have_the_list_of_files = () => Documents.Where(d => !d.IsFolder).ShouldNotBeEmpty();
@@ -56,7 +56,7 @@ namespace LondonUbfWebDrive.Test.Integrations
 
         Establish context = () =>
             {
-                Service = new ReadDocumentService();
+                Service = new DocumentReader();
                 _tempFileName = "~temp.docx";
                 File.WriteAllText(Path.Combine(BaseFolder, _tempFileName), "Temp file");
             };
@@ -69,7 +69,7 @@ namespace LondonUbfWebDrive.Test.Integrations
     [Subject(typeof(Document))]
     public class When_it_reads_a_document : DocumentReaderTests
     {
-        Establish context = () => Service = new ReadDocumentService();
+        Establish context = () => Service = new DocumentReader();
         Because It_reads_file_as_document = () => Document = Service.List(BaseFolder, CurrentPath).Skip(1).First();
 
         It should_have_document_name = () => Document.Name.ShouldNotBeEmpty();
@@ -84,7 +84,7 @@ namespace LondonUbfWebDrive.Test.Integrations
             {
                 _filePath = Path.Combine(BaseFolder, "test.txt");
                 File.WriteAllText(_filePath, "Hello world!");
-                Service = new ReadDocumentService();
+                Service = new DocumentReader();
             };
 
         Because of = () => _document = Service.Get(_filePath);

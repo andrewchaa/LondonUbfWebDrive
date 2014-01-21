@@ -27,8 +27,8 @@ namespace LondonUbfWebDrive.Test.Unit
             private static FakeFileDirectoryService _fileDirectoryService = 
                 new FakeFileDirectoryService
                     {
-                        Directories = new [] { WebEntity.Directory(_directoryName, _directoryFullName) },
-                        Files = new[] { WebEntity.File(_fileName, _fileFullName, ".jpg") }
+                        Directories = new [] { new WebEntity(_directoryName, _directoryFullName) },
+                        Files = new[] { new WebEntity(_fileName, _fileFullName, ".jpg") }
                     };
             private static FakeConfig _config = new FakeConfig {PictureDirectory = @"c:\temp\"};
             private static string _directoryName = "Directory";
