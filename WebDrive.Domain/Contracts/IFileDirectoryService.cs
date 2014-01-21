@@ -7,5 +7,7 @@ namespace WebDrive.Domain.Contracts
     {
         IEnumerable<WebEntity> EnumerateDirectories(string path);
         IEnumerable<WebEntity> EnumerateFiles(string path);
+        WebEntity GetFile(string fullName);
+        byte[] GetThumbnailImage(string fullName);
     }
 }

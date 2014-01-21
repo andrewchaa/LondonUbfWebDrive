@@ -47,8 +47,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Contracts\IBreadcrumbService.cs" />
     <Compile Include="Contracts\IConfig.cs" />
     <Compile Include="Contracts\IFileDirectoryService.cs" />
+    <Compile Include="Contracts\IReadDocumentService.cs" />
     <Compile Include="Contracts\IReadThumbnails.cs" />
     <Compile Include="Model\Breadcrumb.cs" />
     <Compile Include="Model\Thumbnail.cs" />
@@ -59,8 +61,6 @@
     <Compile Include="Model\DocumentMap.cs" />
     <Compile Include="Model\DocumentMetadata.cs" />
     <Compile Include="Services\FileDirectoryService.cs" />
-    <Compile Include="Services\IBreadcrumbService.cs" />
-    <Compile Include="Services\IReadDocumentService.cs" />
     <Compile Include="Contracts\IMetaDataRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\ReadDocumentService.cs" />

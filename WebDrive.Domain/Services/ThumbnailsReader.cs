@@ -41,8 +41,8 @@ namespace WebDrive.Domain.Services
 
         private IEnumerable<Thumbnail> GetDirectories(string path)
         {
-            var webDirectories = _fileDirectoryService.EnumerateDirectories(path);
-            return webDirectories.Select(
+            var directories = _fileDirectoryService.EnumerateDirectories(path);
+            return directories.Select(
                 d => new Thumbnail(d.FullName, d.Name, GetRelativePath(d.FullName), null, string.Empty, true)
                 ).ToList();
         }
@@ -54,16 +54,29 @@ namespace WebDrive.Domain.Services
 
         private IEnumerable<Thumbnail> GetThumbnails(string path)
         {
-            var files = _fileDirectoryService.EnumerateFiles(path).Where(f => _imageFileExtensions.Contains(f.Extension));
+            var files = _fileDirectoryService.EnumerateFiles(path).Where(f => _imageFileExtensions.Contains(f.Extension.ToLower()));
             var thumbnails = files.Select(t => new Thumbnail(
                                                          t.FullName,
                                                          t.Name,
                                                          GetRelativePath(t.FullName),
-                                                         new WebImage(t.FullName).Resize(100, 100, true, true).GetBytes(),
+//                                                         new WebImage(t.FullName).Resize(100, 100, true, true).GetBytes(),
                                                          MimeMapping.GetMimeMapping(t.Name),
                                                          false)
                                     );
             return thumbnails;
+        }
+
+        public Thumbnail Get(string fullName)
+        {
+            var entity = _fileDirectoryService.GetFile(fullName);
+            return new Thumbnail(
+                entity.FullName, 
+                entity.Name, 
+                GetRelativePath(entity.FullName), 
+                _fileDirectoryService.GetThumbnailImage(fullName),
+                MimeMapping.GetMimeMapping(entity.Name),
+                false
+                );
         }
     }
 }

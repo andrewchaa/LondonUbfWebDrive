@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using Machine.Specifications;
+using WebDrive.Domain.Contracts;
 using WebDrive.Domain.Model;
 using WebDrive.Domain.Services;
 

@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using WebDrive.Domain.Contracts;
 using WebDrive.Domain.Model;
 
 namespace WebDrive.Domain.Services

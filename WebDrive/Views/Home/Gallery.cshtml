@@ -12,7 +12,7 @@
 
 	    <div class="row-fluid">
     
-	        <div class="span8">
+	        <div class="span12">
 	            
 	            <div class="widget-box">
 	                
@@ -26,16 +26,6 @@
 
 	        </div><!--/span-->
             
-	        <div class="span4">
-	            
-	            <div class="widget-box">
-	                
-	                <div class="widget-header widget-header-flat"><h6>Recent downloads</h6></div>
-	                <div class="widget-body"><div class="widget-main">@Html.Partial("_RecentDownloads")</div></div>
-	            
-                </div><!-- /widget-box -->
-	            
-	        </div><!-- /span -->
 	    </div>
 
 	    <!--PAGE CONTENT ENDS HERE-->
@@ -65,7 +55,11 @@
             }
 
             $.get(api, function (data) {
-                self.images(data);
+                $.each(data, function (i, val) {
+                    self.images.push(val);
+                });
+
+//                self.images(data);
             });
         };
 

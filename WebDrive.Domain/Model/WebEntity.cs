@@ -11,14 +11,19 @@ namespace WebDrive.Domain.Model
         public string Name { get; private set; }
         public string FullName { get; private set; }
         public string Extension { get; private set; }
+        public bool IsDirectory { get; private set; }
 
-        public WebEntity(string name, string fullName) : this(name, fullName, string.Empty) {}
-        public WebEntity(string name, string fullName, string extension)
+        public static WebEntity Directory(string name, string fullName)
         {
-            Name = name;
-            FullName = fullName;
-            Extension = extension;
+            return new WebEntity{Name = name, FullName = fullName, IsDirectory = true};
         }
+
+        public static WebEntity File(string name, string fullName, string extension)
+        {
+            return new WebEntity{ Name = name, FullName = fullName, Extension = extension};
+        }
+
+        private WebEntity() {}
 
     }
 }

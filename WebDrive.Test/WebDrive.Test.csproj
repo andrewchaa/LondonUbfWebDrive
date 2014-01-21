@@ -47,6 +47,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web.Http, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -57,9 +58,11 @@
     <Compile Include="Handlers\FoldersTests.cs" />
     <Compile Include="Integrations\DocumentReaderTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TestDoubles\StubConfig.cs" />
+    <Compile Include="TestDoubles\fakeConfig.cs" />
+    <Compile Include="TestDoubles\FakeFileDirectoryService.cs" />
     <Compile Include="Unit\BreadcrumbTests.cs" />
     <Compile Include="Integrations\ThumbnailReaderTests.cs" />
+    <Compile Include="Unit\FileDirectoryControllerTests.cs" />
     <Compile Include="Unit\ThumbnailsReaderTests.cs" />
   </ItemGroup>
   <ItemGroup>

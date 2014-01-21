@@ -16,7 +16,7 @@ namespace LondonUbfWebDrive.Test.Integrations
         private static IEnumerable<Thumbnail> _thumbnails;
         private static string _pictureDirectory;
         private static string _subddirectory;
-        private static IConfig _config;
+        private static FakeConfig _config;
         private static IFileDirectoryService _fileDirectoryService;
 
         Establish context = () =>
@@ -24,7 +24,8 @@ namespace LondonUbfWebDrive.Test.Integrations
                 _fileDirectoryService = new FileDirectoryService();
                 _pictureDirectory = @"c:\temp\";
                 _subddirectory = "subddirectory 1";
-                _config = new StubConfig(_pictureDirectory);
+                _config = new FakeConfig();
+                _config.PictureDirectory = _pictureDirectory;
                 new DirectoryInfo(_pictureDirectory).CreateSubdirectory(_subddirectory);
 
                 _reader = new ThumbnailsReader(_fileDirectoryService, _config);
