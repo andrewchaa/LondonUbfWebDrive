@@ -4,6 +4,8 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Text;
+using System.Web;
 using System.Web.Http;
 using WebDrive.Domain.Contracts;
 using WebDrive.Domain.Model;
@@ -24,14 +26,13 @@ namespace WebDrive.Controllers
         // GET api/filedirectory
         public IEnumerable<WebEntity> Get()
         {
-            var entities = GetWebEntities(string.Empty);
+            var entities = GetWebEntities(_config.PictureDirectory);
 
             return entities;
         }
 
-        private IEnumerable<WebEntity> GetWebEntities(string relativePath)
+        private IEnumerable<WebEntity> GetWebEntities(string path)
         {
-            string path = Path.Combine(_config.PictureDirectory, relativePath);
             var directories = _fileDirectoryService.EnumerateDirectories(path);
             var files = _fileDirectoryService.EnumerateFiles(path);
 
@@ -42,9 +43,11 @@ namespace WebDrive.Controllers
         }
 
         // GET api/filedirectory/5
-        public IEnumerable<WebEntity> Get(string id)
+        public IEnumerable<WebEntity> Get(string path)
         {
-            return GetWebEntities(id);
+            string decodedPath = Encoding.UTF8.GetString(HttpServerUtility.UrlTokenDecode(path));
+
+            return GetWebEntities(decodedPath);
         }
 
         // POST api/filedirectory

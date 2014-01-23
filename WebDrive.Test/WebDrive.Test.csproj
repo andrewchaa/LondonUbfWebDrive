@@ -61,9 +61,7 @@
     <Compile Include="TestDoubles\fakeConfig.cs" />
     <Compile Include="TestDoubles\FakeFileDirectoryService.cs" />
     <Compile Include="Unit\BreadcrumbTests.cs" />
-    <Compile Include="Integrations\ThumbnailReaderTests.cs" />
     <Compile Include="Unit\FileDirectoryControllerTests.cs" />
-    <Compile Include="Unit\ThumbnailsReaderTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\WebDrive.Domain\WebDrive.Domain.csproj">

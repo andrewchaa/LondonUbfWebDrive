@@ -4,7 +4,14 @@
         <ul class="thumbnails" data-bind="foreach: images">
             <li>
                 <!-- ko if: !IsDirectory -->
+                <!-- ko if: IsImage -->
                 <a href="#" class="thumbnail"><img data-bind="attr: { src: 'data:' + ContentType + ';base64,' + Content }" /></a>
+                <!-- /ko -->
+                <!-- ko if: !IsImage -->
+                <div style="text-align: center; width:110px;">
+                    <a href="#"><i class="fa fa-file-o fa-5x"></i><br /><span data-bind="text: Name"></span></a>
+                </div>
+                <!-- /ko -->
                 <!-- /ko -->
                 <!-- ko if: IsDirectory -->
                 <div style="text-align: center; width:110px;">

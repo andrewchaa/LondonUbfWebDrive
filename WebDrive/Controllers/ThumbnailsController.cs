@@ -10,25 +10,17 @@ namespace WebDrive.Controllers
 {
     public class ThumbnailsController : ApiController
     {
-        private readonly IConfig _config;
-        private readonly IReadThumbnails _thumbnailsReader;
+        private readonly IFileDirectoryService _fileDirectoryService;
 
-        public ThumbnailsController(IConfig config, IReadThumbnails thumbnailsReader)
+        public ThumbnailsController(IConfig config, IFileDirectoryService fileDirectoryService)
         {
-            _config = config;
-            _thumbnailsReader = thumbnailsReader;
-        }
-
-        // GET api/thumbnails
-        public IEnumerable<Thumbnail> Get()
-        {
-            return _thumbnailsReader.List();
+            _fileDirectoryService = fileDirectoryService;
         }
 
         // GET api/thumbnails/path
-        public Thumbnail Get(string path)
+        public WebEntity Get(string path)
         {
-            return _thumbnailsReader.Get(Encoding.UTF8.GetString(HttpServerUtility.UrlTokenDecode(path)));
+            return _fileDirectoryService.GetFile(Encoding.UTF8.GetString(HttpServerUtility.UrlTokenDecode(path)));
         }
 
     }

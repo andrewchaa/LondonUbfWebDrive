@@ -5,6 +5,7 @@ using LondonUbfWebDrive.Test.TestDoubles;
 using Machine.Specifications;
 using WebDrive.Controllers;
 using WebDrive.Domain.Model;
+using WebDrive.Domain.Services;
 
 namespace LondonUbfWebDrive.Test.Unit
 {
@@ -13,15 +14,6 @@ namespace LondonUbfWebDrive.Test.Unit
         [Subject(typeof(FileDirectoryController))]
         public class When_you_requeset_without_path
         {
-            Establish context = () =>
-                {
-                    _controller = new FileDirectoryController(_config, _fileDirectoryService);
-                };
-
-            Because of = () => _entities = _controller.Get();
-
-            It should_return_directories = () => _entities.First().IsDirectory.ShouldBeTrue();
-
             private static FileDirectoryController _controller;
             private static IEnumerable<WebEntity> _entities;
             private static FakeFileDirectoryService _fileDirectoryService = 
@@ -35,6 +27,17 @@ namespace LondonUbfWebDrive.Test.Unit
             private static string _directoryFullName = Path.Combine(_config.PictureDirectory, _directoryName);
             private static string _fileName = "File";
             private static string _fileFullName = Path.Combine(_config.PictureDirectory, _fileName);
+
+            Establish context = () =>
+                {
+                    _controller = new FileDirectoryController(_config, _fileDirectoryService);
+                };
+
+            Because of = () => _entities = _controller.Get();
+
+            It should_return_directories = () => _entities.First().IsDirectory.ShouldBeTrue();
         }
+
+        
     }
 }

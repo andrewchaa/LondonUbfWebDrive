@@ -6,26 +6,26 @@
     self.images = ko.observableArray();
 
     self.list = function (directory) {
+        self.images([]);
+
         var fileDirectoryUri = '/api/fileDirectory';
         if (directory) {
             fileDirectoryUri += '/' + directory;
         }
 
-        $.get(fileDirectoryUri, function (data) {
-            $.each(data, function (i, val) {
-                $.get('/api/thumbnails/' + val.FullNameBase64, function(thumbnails) {
-                    console.log('test');
+        $.get(fileDirectoryUri, function (entities) {
+            $.each(entities, function (i, val) {
+                console.log(val);
+                $.get('/api/thumbnails/' + val.FullNameBase64, function (thumbnail) {
+                    self.images.push(thumbnail);
                 });
-//                self.images.push(val);
             });
-
-            //                self.images(data);
         });
     };
 
     self.click = function (thumbnail) {
         if (!!thumbnail.IsDirectory) {
-            self.list(thumbnail.RelativePath);
+            self.list(thumbnail.FullNameBase64);
             self.getBreadcrumbs(thumbnail.RelativePath);
         }
         console.log(thumbnail);

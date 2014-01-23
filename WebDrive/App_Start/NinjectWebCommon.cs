@@ -69,7 +69,6 @@ namespace WebDrive.App_Start
             kernel.Bind<IMongoDbHelper>().To<MongoDbHelper>().InSingletonScope();
             kernel.Bind<IConfig>().To<Config>();
             kernel.Bind<ILog>().To<LogImpl>();
-            kernel.Bind<IReadThumbnails>().To<ThumbnailsReader>();
             kernel.Bind<IFileDirectoryService>().To<FileDirectoryService>();
         }        
     }

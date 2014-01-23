@@ -24,7 +24,13 @@ namespace WebDrive.Domain.Services
         public WebEntity GetFile(string fullName)
         {
             var file = new FileInfo(fullName);
-            return new WebEntity(file.Name, file.FullName, file.Extension);        }
+            var entity = new WebEntity(file.Name, file.FullName, file.Extension);
+
+            if (entity.IsImage)
+                return new WebEntity(entity.Name, entity.FullName, entity.Extension, GetThumbnailImage(fullName));
+
+            return entity;
+        }
 
         public byte[] GetThumbnailImage(string fullName)
         {
