@@ -7,6 +7,7 @@ namespace WebDrive.Service
     public class Config : IConfig
     {
         public string FileDirectory { get { return ConfigurationManager.AppSettings["FileDirectory"]; } }
+        public string MessageDirectory { get { return ConfigurationManager.AppSettings["MessageDirectory"]; } }
 
         public string ConnectionString
         {
@@ -26,5 +27,6 @@ namespace WebDrive.Service
         {
             get { return ConfigurationManager.AppSettings["PictureDirectory"]; }
         }
+
     }
 }

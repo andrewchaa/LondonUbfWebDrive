@@ -1,0 +1,11 @@
+﻿<div class="row-fluid">
+	<div class="span12">
+				            
+	    <ul class="unstyled spaced" data-bind="foreach: documents" id="fileList">
+	        <li><i data-bind="css: FileType"></i><a href="#" data-bind="text: Name, click: $parent.clickItem, attr: { title: Name }"></a></li>
+	    </ul>
+
+	</div>
+</div>
+
+

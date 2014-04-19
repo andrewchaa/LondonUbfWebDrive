@@ -153,10 +153,13 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\BreadcrumbsController.cs" />
+    <Compile Include="Controllers\MessageDocumentsController.cs" />
     <Compile Include="Controllers\FileDirectoryController.cs" />
+    <Compile Include="Controllers\MessageFoldersController.cs" />
     <Compile Include="Controllers\FoldersController.cs" />
     <Compile Include="Controllers\DocumentsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\MessageController.cs" />
     <Compile Include="Controllers\MetaDataController.cs" />
     <Compile Include="Controllers\RecentDownloadsController.cs" />
     <Compile Include="Controllers\ThumbnailsController.cs" />
@@ -261,6 +264,7 @@
     <Content Include="Scripts\knockout-2.2.1.debug.js" />
     <Content Include="Scripts\knockout-2.2.1.js" />
     <Content Include="Scripts\modernizr-2.5.3.js" />
+    <Content Include="Scripts\messagedrive.js" />
     <Content Include="Scripts\webdrive.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -289,14 +293,15 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\_Breadcrumb.cshtml" />
-    <Content Include="Views\Home\_Drive.cshtml" />
-    <Content Include="Views\Home\_RecentDownloads.cshtml" />
-    <Content Include="Views\Home\_Suggestions.cshtml" />
+    <Content Include="Views\Shared\_Breadcrumb.cshtml" />
+    <Content Include="Views\Shared\_Drive.cshtml" />
+    <Content Include="Views\Shared\_RecentDownloads.cshtml" />
+    <Content Include="Views\Shared\_Suggestions.cshtml" />
     <Content Include="Views\Shared\_SidebarMenu.cshtml" />
-    <Content Include="Views\Home\_MessageBox.cshtml" />
+    <Content Include="Views\Shared\_MessageBox.cshtml" />
     <Content Include="Views\Home\Gallery.cshtml" />
-    <Content Include="Views\Home\_Thumbnails.cshtml" />
+    <Content Include="Views\Shared\_Thumbnails.cshtml" />
+    <Content Include="Views\Message\Index.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
