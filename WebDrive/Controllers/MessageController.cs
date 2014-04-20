@@ -6,7 +6,6 @@ using System.Web.Mvc;
 
 namespace WebDrive.Controllers
 {
-    [Authorize]
     public class MessageController : Controller
     {
         //
