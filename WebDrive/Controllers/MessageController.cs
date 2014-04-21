@@ -17,4 +17,16 @@ namespace WebDrive.Controllers
         }
 
     }
+
+    public class QuestionSheetController : Controller
+    {
+        //
+        // GET: /questionsheet/
+
+        public ActionResult Index()
+        {
+            return View();
+        }
+
+    }
 }

@@ -153,14 +153,18 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\BreadcrumbsController.cs" />
+    <Compile Include="Controllers\DocumentsController.cs" />
+    <Compile Include="Controllers\FoldersControllerBase.cs" />
     <Compile Include="Controllers\MessageDocumentsController.cs" />
     <Compile Include="Controllers\FileDirectoryController.cs" />
     <Compile Include="Controllers\MessageFoldersController.cs" />
-    <Compile Include="Controllers\FoldersController.cs" />
-    <Compile Include="Controllers\DocumentsController.cs" />
+    <Compile Include="Controllers\FileFoldersController.cs" />
+    <Compile Include="Controllers\FileDocumentsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MessageController.cs" />
     <Compile Include="Controllers\MetaDataController.cs" />
+    <Compile Include="Controllers\QuestionSheetDocumentsController.cs" />
+    <Compile Include="Controllers\QuestionSheetFoldersController.cs" />
     <Compile Include="Controllers\RecentDownloadsController.cs" />
     <Compile Include="Controllers\ThumbnailsController.cs" />
     <Compile Include="Global.asax.cs">
@@ -263,6 +267,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\knockout-2.2.1.debug.js" />
     <Content Include="Scripts\knockout-2.2.1.js" />
+    <Content Include="Scripts\questionsheetdrive.js" />
     <Content Include="Scripts\modernizr-2.5.3.js" />
     <Content Include="Scripts\messagedrive.js" />
     <Content Include="Scripts\webdrive.js" />
@@ -302,6 +307,7 @@
     <Content Include="Views\Home\Gallery.cshtml" />
     <Content Include="Views\Shared\_Thumbnails.cshtml" />
     <Content Include="Views\Message\Index.cshtml" />
+    <Content Include="Views\QuestionSheet\Index.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

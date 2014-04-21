@@ -8,5 +8,6 @@ namespace LondonUbfWebDrive.Test.TestDoubles
         public string ConnectionString { get; private set; }
         public string PictureDirectory { get; set; }
         public string MessageDirectory { get; private set; }
+        public string QuestionSheetDirectory { get; private set; }
     }
 }

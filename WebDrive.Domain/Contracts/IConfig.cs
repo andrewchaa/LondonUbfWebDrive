@@ -6,5 +6,7 @@
         string ConnectionString { get; }
         string PictureDirectory { get; }
         string MessageDirectory { get; }
+        string QuestionSheetDirectory { get; }
+
     }
 }

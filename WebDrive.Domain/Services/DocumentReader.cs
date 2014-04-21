@@ -19,11 +19,6 @@ namespace WebDrive.Domain.Services
             return documents;
         }
 
-        public IEnumerable<Document> List(string baseFolder)
-        {
-            return List(baseFolder, string.Empty);
-        }
-
         public Document Get(string fullname)
         {
             var content = File.ReadAllBytes(fullname);

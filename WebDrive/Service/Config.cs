@@ -1,6 +1,5 @@
 ﻿using System.Configuration;
 using WebDrive.Domain.Contracts;
-using WebDrive.Domain.Services;
 
 namespace WebDrive.Service
 {
@@ -8,6 +7,7 @@ namespace WebDrive.Service
     {
         public string FileDirectory { get { return ConfigurationManager.AppSettings["FileDirectory"]; } }
         public string MessageDirectory { get { return ConfigurationManager.AppSettings["MessageDirectory"]; } }
+        public string QuestionSheetDirectory { get { return ConfigurationManager.AppSettings["QuestionSheetDirectory"]; } }
 
         public string ConnectionString
         {

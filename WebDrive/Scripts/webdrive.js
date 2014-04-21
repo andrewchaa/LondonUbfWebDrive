@@ -11,7 +11,7 @@
     };
     
     self.list = function (path) {
-        var uri = 'api/folders';
+        var uri = 'api/filefolders';
         if (!!path) {
             uri += path;
         }
@@ -34,7 +34,7 @@
             document.body.appendChild(iframe);
         }
         
-        iframe.src = 'api/documents' + path;
+        iframe.src = 'api/filedocuments' + path;
         
     };
 
@@ -100,7 +100,7 @@ $(function () {
         paramname: 'uploadFiles',
         maxfiles: 5,
         maxfilesize: 2, // in mb
-        url: '/api/documents',
+        url: '/api/filedocuments',
         data: {
             selectedDir: function () {
                 return viewModel.getPath();

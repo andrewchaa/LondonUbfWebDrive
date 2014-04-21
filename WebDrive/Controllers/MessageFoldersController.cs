@@ -1,37 +1,13 @@
-﻿using System.Collections.Generic;
-using System.Configuration;
-using System.Web.Http;
-using WebDrive.Domain.Contracts;
-using WebDrive.Domain.Model;
-using WebDrive.Domain.Services;
+﻿using WebDrive.Domain.Contracts;
 
 namespace WebDrive.Controllers
 {
-    public class MessageFoldersController : ApiController
+    public class MessageFoldersController : FoldersControllerBase
     {
-        private readonly IReadDocumentService _service;
-        private readonly string _baseFolder;
-
-        public MessageFoldersController(IReadDocumentService service)
+        public MessageFoldersController(IReadDocumentService service, IConfig config) : base(service)
         {
-            _service = service;
-            _baseFolder = ConfigurationManager.AppSettings["MessageDirectory"];
+            BaseDirectory = config.MessageDirectory;
         }
 
-        // GET api/folders
-        public IEnumerable<Document> Get()
-        {
-            var documents = _service.List(_baseFolder);
-
-            return documents;
-        }
-
-        // GET api/folders/applications
-        public IEnumerable<Document> Get(string path)
-        {
-            var documents = _service.List(_baseFolder, path);
-
-            return documents;
-        }
     }
 }

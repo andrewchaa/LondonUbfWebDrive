@@ -1,0 +1,26 @@
+﻿<div id="page-content" class="clearfix">
+    <div class="page-header position-relative">
+        <h1>Web drive <small><i class="icon-double-angle-right"></i> Browse and download all your files</small></h1>
+    </div><!--/.page-header-->
+
+    <div class="row-fluid">
+        <div class="row-fluid">
+            <div class="span8">
+                <div class="widget-box">
+                    <div class="widget-header widget-header-flat" id="breadcrumbs">
+                        @Html.Partial("_Breadcrumb")
+                    </div>
+                    <div class="widget-body">
+                        <div class="widget-main">@Html.Partial("_Drive")</div>
+                    </div>
+
+                </div><!-- /widget-box -->
+            </div><!--/span-->
+
+            <div class="span4"></div><!-- /span -->
+        </div>
+
+        <!--PAGE CONTENT ENDS HERE-->
+    </div><!--/row-->
+</div><!--/#page-content-->
+@Scripts.Render("~/Scripts/questionsheetdrive.js")
