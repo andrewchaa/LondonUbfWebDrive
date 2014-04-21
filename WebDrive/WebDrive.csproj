@@ -296,9 +296,9 @@
     <Content Include="Views\Shared\_Breadcrumb.cshtml" />
     <Content Include="Views\Shared\_Drive.cshtml" />
     <Content Include="Views\Shared\_RecentDownloads.cshtml" />
-    <Content Include="Views\Shared\_Suggestions.cshtml" />
+    <Content Include="Views\Home\_Suggestions.cshtml" />
     <Content Include="Views\Shared\_SidebarMenu.cshtml" />
-    <Content Include="Views\Shared\_MessageBox.cshtml" />
+    <Content Include="Views\Home\_MessageBox.cshtml" />
     <Content Include="Views\Home\Gallery.cshtml" />
     <Content Include="Views\Shared\_Thumbnails.cshtml" />
     <Content Include="Views\Message\Index.cshtml" />
